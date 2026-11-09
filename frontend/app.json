@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "trampo-frontend",
+    "slug": "trampo-frontend",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/logo.png",
+    "scheme": "trampofrontend",
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#5170ff",
+        "foregroundImage": "./src/assets/logo.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.trampofrontend"
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./src/assets/logo.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#5170ff",
+          "image": "./src/assets/logo.png",
+          "imageWidth": 200
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": false,
+      "reactCompiler": true
+    }
+  }
+}

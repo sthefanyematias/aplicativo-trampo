@@ -1,0 +1,67 @@
+# ============================================
+# Trampo - backend (Spring Boot) + frontend (Expo)
+# ============================================
+
+# --- Dependencias frontend (Expo / React Native)
+node_modules/
+.expo/
+.expo-shared/
+frontend/node_modules/
+frontend/.expo/
+
+# --- Build backend (Spring Boot / Maven)
+target/
+build/
+backend/target/
+*.class
+*.war
+*.jar
+# exceto o wrapper do Maven, que precisa ser versionado
+!**/.mvn/wrapper/maven-wrapper.jar
+
+# --- Build Android (Expo prebuild)
+.gradle/
+frontend/android/.gradle/
+frontend/android/app/build/
+frontend/android/build/
+local.properties
+*.apk
+*.aab
+*.ipa
+.kotlin/
+
+# --- Variaveis de ambiente e segredos -> NUNCA versionar
+.env
+.env.*
+*.local
+application-local.properties
+**/application-local.properties
+application-*.properties
+**/application-*.properties
+*.keystore
+*.jks
+*.p12
+*.pfx
+
+# --- IDE / editores
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+
+# --- Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+hs_err_pid*
+*.hprof
+
+# --- Cobertura / caches
+coverage/
+.nyc_output/
+.cache/
+.pytest_cache/
+*.orig
+*.rej
