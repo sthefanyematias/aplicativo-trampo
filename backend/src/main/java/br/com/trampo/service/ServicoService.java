@@ -1,4 +1,3 @@
-
 package br.com.trampo.service;
 
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ import br.com.trampo.exception.AcessoNegadoException;
 import br.com.trampo.exception.ConflitoException;
 import br.com.trampo.exception.RecursoNaoEncontradoException;
 import br.com.trampo.exception.RegraNegocioException;
+import br.com.trampo.model.Contratado;
 import br.com.trampo.model.Contratante;
 import br.com.trampo.model.Servico;
 import br.com.trampo.model.Usuario;
@@ -21,6 +21,7 @@ import br.com.trampo.model.enums.StatusServico;
 import br.com.trampo.model.enums.TipoUsuario;
 import br.com.trampo.repository.AvaliacaoRepository;
 import br.com.trampo.repository.CandidaturaRepository;
+import br.com.trampo.repository.ContratadoRepository;
 import br.com.trampo.repository.ContratanteRepository;
 import br.com.trampo.repository.MensagemRepository;
 import br.com.trampo.repository.ServicoRepository;
@@ -31,6 +32,7 @@ public class ServicoService {
 
     private final ServicoRepository servicoRepository;
     private final ContratanteRepository contratanteRepository;
+    private final ContratadoRepository contratadoRepository;
     private final CandidaturaRepository candidaturaRepository;
     private final MensagemRepository mensagemRepository;
     private final AvaliacaoRepository avaliacaoRepository;
@@ -38,12 +40,14 @@ public class ServicoService {
 
     public ServicoService(ServicoRepository servicoRepository,
             ContratanteRepository contratanteRepository,
+            ContratadoRepository contratadoRepository,
             CandidaturaRepository candidaturaRepository,
             MensagemRepository mensagemRepository,
             AvaliacaoRepository avaliacaoRepository,
             NotificacaoService notificacaoService) {
         this.servicoRepository = servicoRepository;
         this.contratanteRepository = contratanteRepository;
+        this.contratadoRepository = contratadoRepository;
         this.candidaturaRepository = candidaturaRepository;
         this.mensagemRepository = mensagemRepository;
         this.avaliacaoRepository = avaliacaoRepository;
@@ -74,11 +78,19 @@ public class ServicoService {
         return servicoRepository.findByStatus(StatusServico.ABERTO, pageable);
     }
 
-    public Page<Servico> listarPorContratante(Long contratanteId, Pageable pageable) {
+    public Page<Servico> listarPorContratante(Long contratanteId, Usuario solicitante, Pageable pageable) {
+        Contratante contratante = contratanteRepository.findById(contratanteId)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Contratante não encontrado."));
+
+        validarDonoContratante(contratante, solicitante);
         return servicoRepository.findByContratanteId(contratanteId, pageable);
     }
 
-    public Page<Servico> listarPorContratado(Long contratadoId, Pageable pageable) {
+    public Page<Servico> listarPorContratado(Long contratadoId, Usuario solicitante, Pageable pageable) {
+        Contratado contratado = contratadoRepository.findById(contratadoId)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Contratado não encontrado."));
+
+        validarDonoContratado(contratado, solicitante);
         return servicoRepository.findByContratadoId(contratadoId, pageable);
     }
 
@@ -263,6 +275,16 @@ public class ServicoService {
         if (contratante == null || contratante.getUsuario() == null
                 || !contratante.getUsuario().getId().equals(solicitante.getId())) {
             throw new AcessoNegadoException("Você não é o contratante responsável por este serviço.");
+        }
+    }
+
+    private void validarDonoContratado(Contratado contratado, Usuario solicitante) {
+        if (solicitante.getTipo() == TipoUsuario.ADMIN) {
+            return;
+        }
+        if (contratado == null || contratado.getUsuario() == null
+                || !contratado.getUsuario().getId().equals(solicitante.getId())) {
+            throw new AcessoNegadoException("Você só pode consultar os seus próprios serviços.");
         }
     }
 

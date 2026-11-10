@@ -62,14 +62,18 @@ public class ServicoController {
 
     @GetMapping("/contratante/{contratanteId}")
     public PaginaResponse<Servico> listarPorContratante(@PathVariable Long contratanteId,
+            @AuthenticationPrincipal UsuarioAutenticado autenticado,
             @PageableDefault(size = 20, sort = "criadoEm", direction = Sort.Direction.DESC) Pageable pageable) {
-        return PaginaResponse.de(servicoService.listarPorContratante(contratanteId, pageable));
+        return PaginaResponse.de(servicoService.listarPorContratante(
+                contratanteId, autenticado.getUsuario(), pageable));
     }
 
     @GetMapping("/contratado/{contratadoId}")
     public PaginaResponse<Servico> listarPorContratado(@PathVariable Long contratadoId,
+            @AuthenticationPrincipal UsuarioAutenticado autenticado,
             @PageableDefault(size = 20, sort = "criadoEm", direction = Sort.Direction.DESC) Pageable pageable) {
-        return PaginaResponse.de(servicoService.listarPorContratado(contratadoId, pageable));
+        return PaginaResponse.de(servicoService.listarPorContratado(
+                contratadoId, autenticado.getUsuario(), pageable));
     }
 
     @GetMapping("/{id}")

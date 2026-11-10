@@ -33,6 +33,7 @@ import br.com.trampo.model.enums.StatusServico;
 import br.com.trampo.model.enums.TipoUsuario;
 import br.com.trampo.repository.AvaliacaoRepository;
 import br.com.trampo.repository.CandidaturaRepository;
+import br.com.trampo.repository.ContratadoRepository;
 import br.com.trampo.repository.ContratanteRepository;
 import br.com.trampo.repository.MensagemRepository;
 import br.com.trampo.repository.ServicoRepository;
@@ -44,6 +45,7 @@ class ServicoServiceTest {
 
     @Mock private ServicoRepository servicoRepository;
     @Mock private ContratanteRepository contratanteRepository;
+    @Mock private ContratadoRepository contratadoRepository;
     @Mock private CandidaturaRepository candidaturaRepository;
     @Mock private MensagemRepository mensagemRepository;
     @Mock private AvaliacaoRepository avaliacaoRepository;
