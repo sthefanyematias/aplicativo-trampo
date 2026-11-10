@@ -1,0 +1,28 @@
+{
+  "ct": "04",
+  "requisito": "RF01",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "POST /usuarios",
+  "entrada": "cadastro com tipo ADMIN pela rota publica",
+  "esperado": "400",
+  "statusObtido": "400",
+  "mensagem": "Não é permitido criar administradores por este cadastro.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT04_cadastro_administrador_bloqueado.json",
+  "passos": [
+    {
+      "descricao": "Tentativa de criar administrador pela rota publica",
+      "esperado": "400 Bad Request com recusa da regra de negocio",
+      "status": 400,
+      "mensagem": "Não é permitido criar administradores por este cadastro.",
+      "duracaoMs": 19,
+      "corpo": "{\"status\":400,\"mensagem\":\"Não é permitido criar administradores por este cadastro.\",\"data\":\"2026-11-09T16:06:22.5168071\"}",
+      "resposta": {
+        "status": 400,
+        "mensagem": "Não é permitido criar administradores por este cadastro.",
+        "data": "2026-11-09T16:06:22.5168071"
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "ct": "12",
+  "requisito": "RF04",
+  "tecnica": "Particionamento de equivalencia",
+  "requisicao": "PUT /contratantes/me",
+  "entrada": "atualizacao de documento e endereco de referencia",
+  "esperado": "200",
+  "statusObtido": "200",
+  "mensagem": "registro id 3",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT12_perfil_contratante_atualizar.json",
+  "passos": [
+    {
+      "descricao": "Atualização do próprio perfil de contratante",
+      "esperado": "200 OK com perfil atualizado",
+      "status": 200,
+      "mensagem": "registro id 3",
+      "duracaoMs": 13,
+      "corpo": "{\"id\":3,\"usuario\":{\"id\":7,\"nome\":\"Geovana\",\"sobrenome\":\"Novais\",\"email\":\"contratante.1182096@trampo.test\",\"telefone\":\"11999990000\",\"tipo\":\"CONTRATANTE\",\"ativo\":true,\"criadoEm\":\"2026-11-09T16:06:22.312108\"},\"tipoPessoa\":\"FISICA\",\"cpfCnpj\":\"12345678909\",\"cep\":\"01310100\",\"logradouro\":\"Avenida Paulista\",\"numero\":\"1000\",\"complemento\":\"Apto 51\",\"bairro\":\"Bela Vista\",\"cidade\":\"Sao Paulo\",\"uf\":\"SP\",\"latitude\":-23.5505,\"longitude\":-46.6333}",
+      "resposta": {
+        "id": 3,
+        "usuario": {
+          "id": 7,
+          "nome": "Geovana",
+          "sobrenome": "Novais",
+          "email": "contratante.1182096@trampo.test",
+          "telefone": "11999990000",
+          "tipo": "CONTRATANTE",
+          "ativo": true,
+          "criadoEm": "2026-11-09T16:06:22.312108"
+        },
+        "tipoPessoa": "FISICA",
+        "cpfCnpj": "12345678909",
+        "cep": "01310100",
+        "logradouro": "Avenida Paulista",
+        "numero": "1000",
+        "complemento": "Apto 51",
+        "bairro": "Bela Vista",
+        "cidade": "Sao Paulo",
+        "uf": "SP",
+        "latitude": -23.5505,
+        "longitude": -46.6333
+      }
+    }
+  ]
+}

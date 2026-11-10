@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Relatorio de execucao dos testes de caixa preta</title>
+<style>
+  body { font-family: Georgia, 'Times New Roman', serif; color: #1b1b1b; margin: 32px; font-size: 11px; }
+  h1 { font-size: 18px; margin-bottom: 4px; }
+  h2 { font-size: 14px; margin-top: 28px; border-bottom: 1px solid #999; padding-bottom: 4px; }
+  h3 { font-size: 12px; }
+  p { margin: 4px 0; line-height: 1.45; }
+  table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+  th, td { border: 1px solid #bbb; padding: 4px 5px; vertical-align: top; text-align: left; }
+  th { background: #eee; font-size: 10px; }
+  td.centro { text-align: center; white-space: nowrap; }
+  td.entrada { max-width: 260px; }
+  tr.reprovado td { background: #fbe9e7; }
+  tr.bloqueado td { background: #fdf6e3; }
+  .resumo span { display: inline-block; margin-right: 18px; }
+  .detalhe { margin-top: 18px; page-break-inside: avoid; }
+  pre { background: #f5f5f5; border: 1px solid #ddd; padding: 6px; white-space: pre-wrap; word-break: break-word; font-size: 9px; }
+  @media print { body { margin: 12mm; } }
+</style>
+</head>
+<body>
+  <h1>Relatorio de execucao dos testes de caixa preta</h1>
+  <p><strong>Sistema:</strong> Trampo &nbsp; <strong>API:</strong> http://localhost:8080 &nbsp; <strong>Execucao:</strong> 09/11/2026, 16:06:24</p>
+  <p class="resumo">
+    <span><strong>Casos:</strong> 53</span>
+    <span><strong>Aprovados:</strong> 53</span>
+    <span><strong>Reprovados:</strong> 0</span>
+    <span><strong>Bloqueados:</strong> 0</span>
+  </p>
+
+  <h2>Tabela de rastreabilidade dos casos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Caso</th><th>Req.</th><th>Tecnica</th><th>Entrada</th>
+        <th>Esperado</th><th>Obtido</th><th>Mensagem</th><th>Veredito</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="aprovado">
+        <td>CT01</td>
+        <td>RF01</td>
+        <td>Particionamento de equivalencia e tabela de decisao</td>
+        <td class="entrada">nome, sobrenome, e-mail contratante.1182096@trampo.test, telefone, senha com 10 caracteres, tipo CONTRATANTE, tipo de pessoa e CPF, endereco completo, latitude e longitude</td>
+        <td class="centro">201</td>
+        <td class="centro">201</td>
+        <td>registro id 7</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT02</td>
+        <td>RF01</td>
+        <td>Particionamento de equivalencia e tabela de decisao</td>
+        <td class="entrada">servicos, disponibilidade, descricao e raio de busca de 10 km, todos validos, com e-mail contratado.1182096@trampo.test</td>
+        <td class="centro">201</td>
+        <td class="centro">201</td>
+        <td>registro id 8</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT03</td>
+        <td>RF01</td>
+        <td>Particionamento de equivalencia</td>
+        <td class="entrada">mesmo e-mail contratante.1182096@trampo.test ja cadastrado no CT01</td>
+        <td class="centro">409</td>
+        <td class="centro">409</td>
+        <td>Já existe um usuário com este e-mail.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT04</td>
+        <td>RF01</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">cadastro com tipo ADMIN pela rota publica</td>
+        <td class="centro">400</td>
+        <td class="centro">400</td>
+        <td>Não é permitido criar administradores por este cadastro.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT05</td>
+        <td>RF01</td>
+        <td>Analise de valor limite</td>
+        <td class="entrada">senha com sete caracteres e senha com oito caracteres</td>
+        <td class="centro">400 / 201</td>
+        <td class="centro">400 / 201</td>
+        <td>senha: A senha deve ter no mínimo 8 caracteres. | registro id 9</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT06</td>
+        <td>RF02</td>
+        <td>Particionamento de equivalencia</td>
+        <td class="entrada">e-mail contratante.1182096@trampo.test e senha correta</td>
+        <td class="centro">200</td>
+        <td class="centro">200</td>
+        <td>{"token":"TOKEN_REDIGIDO</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT07</td>
+        <td>RF02</td>
+        <td>Particionamento de equivalencia</td>
+        <td class="entrada">e-mail valido e senha incorreta</td>
+        <td class="centro">401</td>
+        <td class="centro">401</td>
+        <td>E-mail ou senha inválidos.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT08</td>
+        <td>RF02</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">requisicao sem cabecalho Authorization</td>
+        <td class="centro">401</td>
+        <td class="centro">401</td>
+        <td>Não autenticado.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT09</td>
+        <td>RF02</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">cabecalho Authorization com token adulterado</td>
+        <td class="centro">401</td>
+        <td class="centro">401</td>
+        <td>Não autenticado.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT10</td>
+        <td>RF03</td>
+        <td>Particionamento de equivalencia</td>
+        <td class="entrada">atualizacao de descricao, servicos, disponibilidade, endereco e raio de busca</td>
+        <td class="centro">200</td>
+        <td class="centro">200</td>
+        <td>registro id 4</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT11</td>
+        <td>RF03</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">exclusao de perfil de contratado com candidaturas e servicos vinculados</td>
+        <td class="centro">409</td>
+        <td class="centro">409</td>
+        <td>Não é possível excluir o perfil: existem candidaturas ou serviços vinculados.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT12</td>
+        <td>RF04</td>
+        <td>Particionamento de equivalencia</td>
+        <td class="entrada">atualizacao de documento e endereco de referencia</td>
+        <td class="centro">200</td>
+        <td class="centro">200</td>
+        <td>registro id 3</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT13</td>
+        <td>RF04</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">exclusao de perfil de contratante com servicos publicados</td>
+        <td class="centro">409</td>
+        <td class="centro">409</td>
+        <td>Não é possível excluir o perfil: existem serviços publicados.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT14</td>
+        <td>RF05</td>
+        <td>Caso de uso e particionamento de equivalencia</td>
+        <td class="entrada">titulo, descricao, valor, data, faixa de horario, periodo e local herdado do perfil</td>
+        <td class="centro">201</td>
+        <td class="centro">201</td>
+        <td>registro id 5</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT15</td>
+        <td>RF05</td>
+        <td>Analise de valor limite</td>
+        <td class="entrada">horario final igual ao inicial e horario final um minuto antes do inicial</td>
+        <td class="centro">400 / 400</td>
+        <td class="centro">400 / 400</td>
+        <td>O horário final deve ser depois do horário inicial. | O horário final deve ser depois do horário inicial.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT16</td>
+        <td>RF05</td>
+        <td>Transicao de estados</td>
+        <td class="entrada">edicao de servico que ja esta em andamento</td>
+        <td class="centro">400</td>
+        <td class="centro">400</td>
+        <td>Só é possível editar serviços abertos.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT17</td>
+        <td>RF05</td>
+        <td>Transicao de estados</td>
+        <td class="entrada">conclusao de servico no estado ABERTO</td>
+        <td class="centro">400</td>
+        <td class="centro">400</td>
+        <td>Só é possível concluir um serviço em andamento.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT18</td>
+        <td>RF05</td>
+        <td>Transicao de estados</td>
+        <td class="entrada">cancelamento de servico no estado CONCLUIDO</td>
+        <td class="centro">400</td>
+        <td class="centro">400</td>
+        <td>Não é possível cancelar um serviço já concluído.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT19</td>
+        <td>RF05</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">exclusao de servico com candidaturas, mensagens e avaliacao</td>
+        <td class="centro">409</td>
+        <td class="centro">409</td>
+        <td>Não é possível excluir: este serviço possui histórico. Cancele-o em vez de excluir.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT20</td>
+        <td>RF06</td>
+        <td>Caso de uso e valor limite</td>
+        <td class="entrada">latitude -23.5505, longitude -46.6333 e raio de 20 km</td>
+        <td class="centro">200</td>
+        <td class="centro">200</td>
+        <td>pagina com 6 registro(s) de 6</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT21</td>
+        <td>RF06</td>
+        <td>Analise de valor limite</td>
+        <td class="entrada">coordenada sem servicos no entorno e raio de 1 km</td>
+        <td class="centro">200 com lista vazia</td>
+        <td class="centro">200</td>
+        <td>pagina com 0 registro(s) de 0</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT22</td>
+        <td>RF07</td>
+        <td>Transicao de estados</td>
+        <td class="entrada">candidatura de contratado a servico no estado ABERTO</td>
+        <td class="centro">201</td>
+        <td class="centro">201</td>
+        <td>registro id 4</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT23</td>
+        <td>RF07</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">segunda candidatura do mesmo contratado ao mesmo servico</td>
+        <td class="centro">409</td>
+        <td class="centro">409</td>
+        <td>Você já se candidatou a este serviço.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT24</td>
+        <td>RF07</td>
+        <td>Transicao de estados</td>
+        <td class="entrada">candidatura a servico no estado EM_ANDAMENTO</td>
+        <td class="centro">400</td>
+        <td class="centro">400</td>
+        <td>Este serviço não está aberto para candidaturas.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT25</td>
+        <td>RF08</td>
+        <td>Tabela de decisao e transicao de estados</td>
+        <td class="entrada">aceite da candidatura pendente pelo contratante responsavel</td>
+        <td class="centro">200 / 200</td>
+        <td class="centro">200 / 200</td>
+        <td>registro id 4 | registro id 5</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT26</td>
+        <td>RF08</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">novo aceite da mesma candidatura, ja ACEITA</td>
+        <td class="centro">400</td>
+        <td class="centro">400</td>
+        <td>Esta candidatura já foi processada.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT27</td>
+        <td>RF08</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">aceite por contratante que nao e o responsavel pelo servico</td>
+        <td class="centro">403</td>
+        <td class="centro">403</td>
+        <td>Você não é o contratante responsável por este serviço.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT28</td>
+        <td>RF09</td>
+        <td>Caso de uso, tabela de decisao e transicao de estados</td>
+        <td class="entrada">conclusao do servico e avaliacao com nota 5 e comentario de ate 500 caracteres</td>
+        <td class="centro">200 / 201 / 200</td>
+        <td class="centro">200 / 201 / 200</td>
+        <td>registro id 5 | registro id 2 | registro id 4</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT29</td>
+        <td>RF09</td>
+        <td>Transicao de estados</td>
+        <td class="entrada">avaliacao de servico no estado ABERTO</td>
+        <td class="centro">400</td>
+        <td class="centro">400</td>
+        <td>Só é possível avaliar serviços concluídos.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT30</td>
+        <td>RF09</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">avaliacao em que avaliador e avaliado sao o mesmo usuario</td>
+        <td class="centro">400</td>
+        <td class="centro">400</td>
+        <td>Não é possível avaliar a si mesmo.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT31</td>
+        <td>RF09</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">segunda avaliacao do mesmo avaliador no mesmo servico</td>
+        <td class="centro">409</td>
+        <td class="centro">409</td>
+        <td>Esta avaliação já foi enviada e não pode ser alterada.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT32</td>
+        <td>RF10</td>
+        <td>Caso de uso</td>
+        <td class="entrada">mensagem de participante do servico para a outra parte</td>
+        <td class="centro">201</td>
+        <td class="centro">201</td>
+        <td>registro id 2</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT33</td>
+        <td>RF10</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">mensagem de usuario que nao participa do servico</td>
+        <td class="centro">403</td>
+        <td class="centro">403</td>
+        <td>Você não participa deste serviço.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT34</td>
+        <td>RF11</td>
+        <td>Caso de uso</td>
+        <td class="entrada">consulta paginada dos servicos publicados pelo proprio contratante</td>
+        <td class="centro">200</td>
+        <td class="centro">200</td>
+        <td>pagina com 2 registro(s) de 2</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT35</td>
+        <td>RF12</td>
+        <td>Caso de uso</td>
+        <td class="entrada">consulta paginada dos servicos aceitos pelo proprio contratado</td>
+        <td class="centro">200</td>
+        <td class="centro">200</td>
+        <td>pagina com 1 registro(s) de 1</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT36</td>
+        <td>RF13</td>
+        <td>Caso de uso</td>
+        <td class="entrada">consulta das candidaturas de um servico pelo contratante responsavel</td>
+        <td class="centro">200</td>
+        <td class="centro">200</td>
+        <td>pagina com 1 registro(s) de 1</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT37</td>
+        <td>RF13</td>
+        <td>Caso de uso</td>
+        <td class="entrada">consulta do total de candidaturas pendentes do contratante autenticado</td>
+        <td class="centro">200</td>
+        <td class="centro">200</td>
+        <td>total 1</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT38</td>
+        <td>RF14</td>
+        <td>Caso de uso</td>
+        <td class="entrada">consulta das conversas do contratante autenticado</td>
+        <td class="centro">200</td>
+        <td class="centro">200</td>
+        <td>1 registro(s) retornado(s)</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT39</td>
+        <td>RF14</td>
+        <td>Transicao de estados</td>
+        <td class="entrada">abertura da conversa pelo destinatario</td>
+        <td class="centro">200</td>
+        <td class="centro">200</td>
+        <td>pagina com 1 registro(s) de 1</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT40</td>
+        <td>RF15</td>
+        <td>Caso de uso</td>
+        <td class="entrada">consulta das avaliacoes recebidas e conferencia da media no perfil</td>
+        <td class="centro">200</td>
+        <td class="centro">200</td>
+        <td>pagina com 1 registro(s) de 1</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT41</td>
+        <td>RF16</td>
+        <td>Particionamento de equivalencia</td>
+        <td class="entrada">nome, sobrenome e telefone validos do proprio usuario</td>
+        <td class="centro">200</td>
+        <td class="centro">200</td>
+        <td>registro id 7</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT42</td>
+        <td>RF16</td>
+        <td>Analise de valor limite</td>
+        <td class="entrada">campo nome vazio</td>
+        <td class="centro">400</td>
+        <td class="centro">400</td>
+        <td>O nome é obrigatório.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT43</td>
+        <td>RF17</td>
+        <td>Caso de uso e particionamento de equivalencia</td>
+        <td class="entrada">consulta do perfil publico de contratante e de contratado</td>
+        <td class="centro">200 / 200</td>
+        <td class="centro">200 / 200</td>
+        <td>registro id 4 | registro id 3</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT44</td>
+        <td>RF18</td>
+        <td>Caso de uso</td>
+        <td class="entrada">consulta do resumo geral pelo administrador autenticado</td>
+        <td class="centro">200</td>
+        <td class="centro">200</td>
+        <td>{"usuarios":11,"contratados":6,"contratantes":4,"servicosAbertos":6,"servicosEmAndamento":0,"servicosConcluidos":2,"serv...</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT45</td>
+        <td>RF18</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">acesso ao resumo com perfil de contratante</td>
+        <td class="centro">403</td>
+        <td class="centro">403</td>
+        <td>Acesso negado.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT46</td>
+        <td>RF18</td>
+        <td>Transicao de estados</td>
+        <td class="entrada">desativacao do cadastro pelo administrador e nova tentativa de autenticacao</td>
+        <td class="centro">200 / 401</td>
+        <td class="centro">200 / 401</td>
+        <td>registro id 11 | E-mail ou senha inválidos.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT47</td>
+        <td>RF19</td>
+        <td>Caso de uso</td>
+        <td class="entrada">assunto, descricao e servico de que o usuario participa</td>
+        <td class="centro">201</td>
+        <td class="centro">201</td>
+        <td>registro id 2</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT48</td>
+        <td>RF19</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">servico de terceiro e servico inexistente</td>
+        <td class="centro">403 / 404</td>
+        <td class="centro">403 / 404</td>
+        <td>Você não participa deste serviço. | Serviço não encontrado.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT49</td>
+        <td>RF19</td>
+        <td>Caso de uso e transicao de estados</td>
+        <td class="entrada">inicio de analise e resolucao da solicitacao pelo administrador</td>
+        <td class="centro">200 / 200 / 200</td>
+        <td class="centro">200 / 200 / 200</td>
+        <td>registro id 2 | registro id 2 | total 0</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT50</td>
+        <td>RF19</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">consulta da lista geral de solicitacoes com perfil de contratante</td>
+        <td class="centro">403</td>
+        <td class="centro">403</td>
+        <td>Esta área é exclusiva da administração.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT51</td>
+        <td>RF20</td>
+        <td>Caso de uso</td>
+        <td class="entrada">consulta das notificacoes do contratado apos receber uma avaliacao</td>
+        <td class="centro">200 / 200</td>
+        <td class="centro">200 / 200</td>
+        <td>2 registro(s) retornado(s) | total 2</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT52</td>
+        <td>RF20</td>
+        <td>Transicao de estados</td>
+        <td class="entrada">marcacao de uma notificacao e de todas como lidas</td>
+        <td class="centro">200 / 204</td>
+        <td class="centro">200 / 204 / 200</td>
+        <td>Geovana Novais avaliou você com nota 5/5 no serviço "Limpeza de apartamento 1182096". | (corpo vazio) | total 0</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr>
+      <tr class="aprovado">
+        <td>CT53</td>
+        <td>RF20</td>
+        <td>Tabela de decisao</td>
+        <td class="entrada">marcacao de notificacao pertencente a outro usuario</td>
+        <td class="centro">403</td>
+        <td class="centro">403</td>
+        <td>Esta notificação não pertence a você.</td>
+        <td class="centro"><strong>APROVADO</strong></td>
+      </tr></tbody>
+  </table>
+
+  <h2>Detalhamento dos casos nao aprovados</h2>
+  <p>Nenhum caso reprovado ou bloqueado nesta execucao.</p>
+</body>
+</html>

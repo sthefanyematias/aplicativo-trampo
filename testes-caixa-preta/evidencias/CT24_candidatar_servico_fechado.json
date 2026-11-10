@@ -1,0 +1,28 @@
+{
+  "ct": "24",
+  "requisito": "RF07",
+  "tecnica": "Transicao de estados",
+  "requisicao": "POST /candidaturas/servico/5/contratado/6",
+  "entrada": "candidatura a servico no estado EM_ANDAMENTO",
+  "esperado": "400",
+  "statusObtido": "400",
+  "mensagem": "Este serviço não está aberto para candidaturas.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT24_candidatar_servico_fechado.json",
+  "passos": [
+    {
+      "descricao": "Candidatura a serviço que não está aberto",
+      "esperado": "400 Bad Request",
+      "status": 400,
+      "mensagem": "Este serviço não está aberto para candidaturas.",
+      "duracaoMs": 10,
+      "corpo": "{\"status\":400,\"mensagem\":\"Este serviço não está aberto para candidaturas.\",\"data\":\"2026-11-09T16:06:23.5053577\"}",
+      "resposta": {
+        "status": 400,
+        "mensagem": "Este serviço não está aberto para candidaturas.",
+        "data": "2026-11-09T16:06:23.5053577"
+      }
+    }
+  ]
+}

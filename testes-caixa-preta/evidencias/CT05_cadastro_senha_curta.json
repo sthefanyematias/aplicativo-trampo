@@ -1,0 +1,48 @@
+{
+  "ct": "05",
+  "requisito": "RF01",
+  "tecnica": "Analise de valor limite",
+  "requisicao": "POST /usuarios",
+  "entrada": "senha com sete caracteres e senha com oito caracteres",
+  "esperado": "400 / 201",
+  "statusObtido": "400 / 201",
+  "mensagem": "senha: A senha deve ter no mínimo 8 caracteres. | registro id 9",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT05_cadastro_senha_curta.json",
+  "passos": [
+    {
+      "descricao": "Sete caracteres, abaixo do limite",
+      "esperado": "400 Bad Request",
+      "status": 400,
+      "mensagem": "senha: A senha deve ter no mínimo 8 caracteres.",
+      "duracaoMs": 4,
+      "corpo": "{\"status\":400,\"mensagem\":\"senha: A senha deve ter no mínimo 8 caracteres.\",\"data\":\"2026-11-09T16:06:22.5232709\"}",
+      "resposta": {
+        "status": 400,
+        "mensagem": "senha: A senha deve ter no mínimo 8 caracteres.",
+        "data": "2026-11-09T16:06:22.5232709"
+      }
+    },
+    {
+      "descricao": "Oito caracteres, no limite da partição valida",
+      "esperado": "201 Created",
+      "status": 201,
+      "mensagem": "registro id 9",
+      "duracaoMs": 83,
+      "corpo": "{\"id\":9,\"nome\":\"Ana\",\"sobrenome\":\"Ribeiro\",\"email\":\"senha.limite.1182096@trampo.test\",\"telefone\":\"11912345678\",\"tipo\":\"CONTRATADO\",\"ativo\":true,\"criadoEm\":\"2026-11-09T16:06:22.5307655\",\"contratadoId\":5,\"contratanteId\":null}",
+      "resposta": {
+        "id": 9,
+        "nome": "Ana",
+        "sobrenome": "Ribeiro",
+        "email": "senha.limite.1182096@trampo.test",
+        "telefone": "11912345678",
+        "tipo": "CONTRATADO",
+        "ativo": true,
+        "criadoEm": "2026-11-09T16:06:22.5307655",
+        "contratadoId": 5,
+        "contratanteId": null
+      }
+    }
+  ]
+}

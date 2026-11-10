@@ -1,0 +1,28 @@
+{
+  "ct": "17",
+  "requisito": "RF05",
+  "tecnica": "Transicao de estados",
+  "requisicao": "PUT /servicos/7/concluir",
+  "entrada": "conclusao de servico no estado ABERTO",
+  "esperado": "400",
+  "statusObtido": "400",
+  "mensagem": "Só é possível concluir um serviço em andamento.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT17_concluir_servico_aberto.json",
+  "passos": [
+    {
+      "descricao": "Conclusão de serviço que não está em andamento",
+      "esperado": "400 Bad Request",
+      "status": 400,
+      "mensagem": "Só é possível concluir um serviço em andamento.",
+      "duracaoMs": 11,
+      "corpo": "{\"status\":400,\"mensagem\":\"Só é possível concluir um serviço em andamento.\",\"data\":\"2026-11-09T16:06:23.7611084\"}",
+      "resposta": {
+        "status": 400,
+        "mensagem": "Só é possível concluir um serviço em andamento.",
+        "data": "2026-11-09T16:06:23.7611084"
+      }
+    }
+  ]
+}

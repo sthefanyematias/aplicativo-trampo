@@ -1,0 +1,50 @@
+{
+  "ct": "10",
+  "requisito": "RF03",
+  "tecnica": "Particionamento de equivalencia",
+  "requisicao": "PUT /contratados/me",
+  "entrada": "atualizacao de descricao, servicos, disponibilidade, endereco e raio de busca",
+  "esperado": "200",
+  "statusObtido": "200",
+  "mensagem": "registro id 4",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT10_perfil_contratado_atualizar.json",
+  "passos": [
+    {
+      "descricao": "Atualização do próprio perfil de contratado",
+      "esperado": "200 OK com perfil atualizado",
+      "status": 200,
+      "mensagem": "registro id 4",
+      "duracaoMs": 28,
+      "corpo": "{\"id\":4,\"usuario\":{\"id\":8,\"nome\":\"Ana\",\"sobrenome\":\"Ribeiro\",\"email\":\"contratado.1182096@trampo.test\",\"telefone\":\"11912345678\",\"tipo\":\"CONTRATADO\",\"ativo\":true,\"criadoEm\":\"2026-11-09T16:06:22.409284\"},\"descricao\":\"Profissional com cinco anos de experiencia em limpeza residencial e comercial.\",\"servicos\":\"Diarista, passadoria e organizacao\",\"disponibilidade\":\"Segunda a sexta, periodo da manha\",\"cep\":\"04094050\",\"logradouro\":\"Rua das Diaristas\",\"numero\":\"45\",\"complemento\":\"Casa 2\",\"bairro\":\"Vila Clementino\",\"cidade\":\"Sao Paulo\",\"uf\":\"SP\",\"latitude\":-23.592,\"longitude\":-46.638,\"raioBuscaKm\":12,\"mediaAvaliacao\":0}",
+      "resposta": {
+        "id": 4,
+        "usuario": {
+          "id": 8,
+          "nome": "Ana",
+          "sobrenome": "Ribeiro",
+          "email": "contratado.1182096@trampo.test",
+          "telefone": "11912345678",
+          "tipo": "CONTRATADO",
+          "ativo": true,
+          "criadoEm": "2026-11-09T16:06:22.409284"
+        },
+        "descricao": "Profissional com cinco anos de experiencia em limpeza residencial e comercial.",
+        "servicos": "Diarista, passadoria e organizacao",
+        "disponibilidade": "Segunda a sexta, periodo da manha",
+        "cep": "04094050",
+        "logradouro": "Rua das Diaristas",
+        "numero": "45",
+        "complemento": "Casa 2",
+        "bairro": "Vila Clementino",
+        "cidade": "Sao Paulo",
+        "uf": "SP",
+        "latitude": -23.592,
+        "longitude": -46.638,
+        "raioBuscaKm": 12,
+        "mediaAvaliacao": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "ct": "13",
+  "requisito": "RF04",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "DELETE /contratantes/me",
+  "entrada": "exclusao de perfil de contratante com servicos publicados",
+  "esperado": "409",
+  "statusObtido": "409",
+  "mensagem": "Não é possível excluir o perfil: existem serviços publicados.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT13_perfil_contratante_excluir_com_servico.json",
+  "passos": [
+    {
+      "descricao": "Exclusão de perfil com serviços publicados",
+      "esperado": "409 Conflict",
+      "status": 409,
+      "mensagem": "Não é possível excluir o perfil: existem serviços publicados.",
+      "duracaoMs": 15,
+      "corpo": "{\"status\":409,\"mensagem\":\"Não é possível excluir o perfil: existem serviços publicados.\",\"data\":\"2026-11-09T16:06:23.9178392\"}",
+      "resposta": {
+        "status": 409,
+        "mensagem": "Não é possível excluir o perfil: existem serviços publicados.",
+        "data": "2026-11-09T16:06:23.9178392"
+      }
+    }
+  ]
+}

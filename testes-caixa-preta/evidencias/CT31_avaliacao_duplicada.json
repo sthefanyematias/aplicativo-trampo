@@ -1,0 +1,28 @@
+{
+  "ct": "31",
+  "requisito": "RF09",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "POST /avaliacoes/servico/5/avaliador/7/avaliado/8",
+  "entrada": "segunda avaliacao do mesmo avaliador no mesmo servico",
+  "esperado": "409",
+  "statusObtido": "409",
+  "mensagem": "Esta avaliação já foi enviada e não pode ser alterada.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT31_avaliacao_duplicada.json",
+  "passos": [
+    {
+      "descricao": "Segunda avaliação do mesmo avaliador",
+      "esperado": "409 Conflict",
+      "status": 409,
+      "mensagem": "Esta avaliação já foi enviada e não pode ser alterada.",
+      "duracaoMs": 13,
+      "corpo": "{\"status\":409,\"mensagem\":\"Esta avaliação já foi enviada e não pode ser alterada.\",\"data\":\"2026-11-09T16:06:23.8630284\"}",
+      "resposta": {
+        "status": 409,
+        "mensagem": "Esta avaliação já foi enviada e não pode ser alterada.",
+        "data": "2026-11-09T16:06:23.8630284"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "ct": "02",
+  "requisito": "RF01",
+  "tecnica": "Particionamento de equivalencia e tabela de decisao",
+  "requisicao": "POST /usuarios",
+  "entrada": "servicos, disponibilidade, descricao e raio de busca de 10 km, todos validos, com e-mail contratado.1182096@trampo.test",
+  "esperado": "201",
+  "statusObtido": "201",
+  "mensagem": "registro id 8",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT02_cadastro_contratado.json",
+  "passos": [
+    {
+      "descricao": "Cadastro do contratado com dados validos",
+      "esperado": "201 Created com usuario e perfil criados",
+      "status": 201,
+      "mensagem": "registro id 8",
+      "duracaoMs": 100,
+      "corpo": "{\"id\":8,\"nome\":\"Ana\",\"sobrenome\":\"Ribeiro\",\"email\":\"contratado.1182096@trampo.test\",\"telefone\":\"11912345678\",\"tipo\":\"CONTRATADO\",\"ativo\":true,\"criadoEm\":\"2026-11-09T16:06:22.4092844\",\"contratadoId\":4,\"contratanteId\":null}",
+      "resposta": {
+        "id": 8,
+        "nome": "Ana",
+        "sobrenome": "Ribeiro",
+        "email": "contratado.1182096@trampo.test",
+        "telefone": "11912345678",
+        "tipo": "CONTRATADO",
+        "ativo": true,
+        "criadoEm": "2026-11-09T16:06:22.4092844",
+        "contratadoId": 4,
+        "contratanteId": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "ct": "30",
+  "requisito": "RF09",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "POST /avaliacoes/servico/5/avaliador/7/avaliado/7",
+  "entrada": "avaliacao em que avaliador e avaliado sao o mesmo usuario",
+  "esperado": "400",
+  "statusObtido": "400",
+  "mensagem": "Não é possível avaliar a si mesmo.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT30_autoavaliacao.json",
+  "passos": [
+    {
+      "descricao": "Tentativa de autoavaliação",
+      "esperado": "400 Bad Request",
+      "status": 400,
+      "mensagem": "Não é possível avaliar a si mesmo.",
+      "duracaoMs": 13,
+      "corpo": "{\"status\":400,\"mensagem\":\"Não é possível avaliar a si mesmo.\",\"data\":\"2026-11-09T16:06:23.847804\"}",
+      "resposta": {
+        "status": 400,
+        "mensagem": "Não é possível avaliar a si mesmo.",
+        "data": "2026-11-09T16:06:23.847804"
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "ct": "21",
+  "requisito": "RF06",
+  "tecnica": "Analise de valor limite",
+  "requisicao": "GET /servicos/proximos",
+  "entrada": "coordenada sem servicos no entorno e raio de 1 km",
+  "esperado": "200 com lista vazia",
+  "statusObtido": "200",
+  "mensagem": "pagina com 0 registro(s) de 0",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT21_listar_proximos_raio_sem_resultado.json",
+  "passos": [
+    {
+      "descricao": "Consulta em região sem serviços cadastrados",
+      "esperado": "200 OK com lista vazia e sem erro",
+      "status": 200,
+      "mensagem": "pagina com 0 registro(s) de 0",
+      "duracaoMs": 28,
+      "corpo": "{\"conteudo\":[],\"pagina\":0,\"tamanho\":50,\"total\":0,\"totalPaginas\":0,\"ultima\":true}",
+      "resposta": {
+        "conteudo": [],
+        "pagina": 0,
+        "tamanho": 50,
+        "total": 0,
+        "totalPaginas": 0,
+        "ultima": true
+      }
+    }
+  ]
+}

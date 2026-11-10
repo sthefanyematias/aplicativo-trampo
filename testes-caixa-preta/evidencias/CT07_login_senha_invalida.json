@@ -1,0 +1,28 @@
+{
+  "ct": "07",
+  "requisito": "RF02",
+  "tecnica": "Particionamento de equivalencia",
+  "requisicao": "POST /auth/login",
+  "entrada": "e-mail valido e senha incorreta",
+  "esperado": "401",
+  "statusObtido": "401",
+  "mensagem": "E-mail ou senha inválidos.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT07_login_senha_invalida.json",
+  "passos": [
+    {
+      "descricao": "Autenticação com senha incorreta",
+      "esperado": "401 Unauthorized",
+      "status": 401,
+      "mensagem": "E-mail ou senha inválidos.",
+      "duracaoMs": 66,
+      "corpo": "{\"status\":401,\"mensagem\":\"E-mail ou senha inválidos.\",\"data\":\"2026-11-09T16:06:23.1306654\"}",
+      "resposta": {
+        "status": 401,
+        "mensagem": "E-mail ou senha inválidos.",
+        "data": "2026-11-09T16:06:23.1306654"
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "ct": "43",
+  "requisito": "RF17",
+  "tecnica": "Caso de uso e particionamento de equivalencia",
+  "requisicao": "GET /contratados/4 e GET /contratantes/3",
+  "entrada": "consulta do perfil publico de contratante e de contratado",
+  "esperado": "200 / 200",
+  "statusObtido": "200 / 200",
+  "mensagem": "registro id 4 | registro id 3",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT43_consultar_perfil_publico.json",
+  "passos": [
+    {
+      "descricao": "Perfil público do contratado",
+      "esperado": "200 OK sem senha, documento ou telefone",
+      "status": 200,
+      "mensagem": "registro id 4",
+      "duracaoMs": 11,
+      "corpo": "{\"id\":4,\"nome\":\"Ana\",\"sobrenome\":\"Ribeiro\",\"descricao\":\"Profissional com cinco anos de experiencia em limpeza residencial e comercial.\",\"servicos\":\"Diarista, passadoria e organizacao\",\"disponibilidade\":\"Segunda a sexta, periodo da manha\",\"bairro\":\"Vila Clementino\",\"cidade\":\"Sao Paulo\",\"uf\":\"SP\",\"mediaAvaliacao\":5,\"membroDesde\":\"2026-11-09T16:06:22.409284\"}",
+      "resposta": {
+        "id": 4,
+        "nome": "Ana",
+        "sobrenome": "Ribeiro",
+        "descricao": "Profissional com cinco anos de experiencia em limpeza residencial e comercial.",
+        "servicos": "Diarista, passadoria e organizacao",
+        "disponibilidade": "Segunda a sexta, periodo da manha",
+        "bairro": "Vila Clementino",
+        "cidade": "Sao Paulo",
+        "uf": "SP",
+        "mediaAvaliacao": 5,
+        "membroDesde": "2026-11-09T16:06:22.409284"
+      }
+    },
+    {
+      "descricao": "Perfil público do contratante",
+      "esperado": "200 OK sem senha, documento ou telefone",
+      "status": 200,
+      "mensagem": "registro id 3",
+      "duracaoMs": 10,
+      "corpo": "{\"id\":3,\"nome\":\"Geovana\",\"sobrenome\":\"Novais\",\"tipoPessoa\":\"FISICA\",\"bairro\":\"Bela Vista\",\"cidade\":\"Sao Paulo\",\"uf\":\"SP\",\"membroDesde\":\"2026-11-09T16:06:22.312108\"}",
+      "resposta": {
+        "id": 3,
+        "nome": "Geovana",
+        "sobrenome": "Novais",
+        "tipoPessoa": "FISICA",
+        "bairro": "Bela Vista",
+        "cidade": "Sao Paulo",
+        "uf": "SP",
+        "membroDesde": "2026-11-09T16:06:22.312108"
+      }
+    }
+  ]
+}

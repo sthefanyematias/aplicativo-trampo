@@ -1,0 +1,38 @@
+{
+  "ct": "06",
+  "requisito": "RF02",
+  "tecnica": "Particionamento de equivalencia",
+  "requisicao": "POST /auth/login",
+  "entrada": "e-mail contratante.1182096@trampo.test e senha correta",
+  "esperado": "200",
+  "statusObtido": "200",
+  "mensagem": "{\"token\":\"TOKEN_REDIGIDO",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT06_login_valido.json",
+  "passos": [
+    {
+      "descricao": "Autenticação com credenciais validas",
+      "esperado": "200 OK com token JWT no corpo",
+      "status": 200,
+      "mensagem": "{\"token\":\"TOKEN_REDIGIDO",
+      "duracaoMs": 72,
+      "corpo": "{\"token\":\"TOKEN_REDIGIDO\",\"usuario\":{\"id\":7,\"nome\":\"Geovana\",\"sobrenome\":\"Novais\",\"email\":\"contratante.1182096@trampo.test\",\"telefone\":\"11987654321\",\"tipo\":\"CONTRATANTE\",\"ativo\":true,\"criadoEm\":\"2026-11-09T16:06:22.312108\",\"contratadoId\":null,\"contratanteId\":3}}",
+      "resposta": {
+        "token": "***",
+        "usuario": {
+          "id": 7,
+          "nome": "Geovana",
+          "sobrenome": "Novais",
+          "email": "contratante.1182096@trampo.test",
+          "telefone": "11987654321",
+          "tipo": "CONTRATANTE",
+          "ativo": true,
+          "criadoEm": "2026-11-09T16:06:22.312108",
+          "contratadoId": null,
+          "contratanteId": 3
+        }
+      }
+    }
+  ]
+}

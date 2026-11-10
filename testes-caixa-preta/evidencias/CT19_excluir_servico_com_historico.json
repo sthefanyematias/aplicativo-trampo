@@ -1,0 +1,28 @@
+{
+  "ct": "19",
+  "requisito": "RF05",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "DELETE /servicos/5",
+  "entrada": "exclusao de servico com candidaturas, mensagens e avaliacao",
+  "esperado": "409",
+  "statusObtido": "409",
+  "mensagem": "Não é possível excluir: este serviço possui histórico. Cancele-o em vez de excluir.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT19_excluir_servico_com_historico.json",
+  "passos": [
+    {
+      "descricao": "Exclusão de serviço com histórico",
+      "esperado": "409 Conflict",
+      "status": 409,
+      "mensagem": "Não é possível excluir: este serviço possui histórico. Cancele-o em vez de excluir.",
+      "duracaoMs": 13,
+      "corpo": "{\"status\":409,\"mensagem\":\"Não é possível excluir: este serviço possui histórico. Cancele-o em vez de excluir.\",\"data\":\"2026-11-09T16:06:23.8890463\"}",
+      "resposta": {
+        "status": 409,
+        "mensagem": "Não é possível excluir: este serviço possui histórico. Cancele-o em vez de excluir.",
+        "data": "2026-11-09T16:06:23.8890463"
+      }
+    }
+  ]
+}

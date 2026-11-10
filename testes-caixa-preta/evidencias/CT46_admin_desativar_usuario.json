@@ -1,0 +1,48 @@
+{
+  "ct": "46",
+  "requisito": "RF18",
+  "tecnica": "Transicao de estados",
+  "requisicao": "PUT /usuarios/11",
+  "entrada": "desativacao do cadastro pelo administrador e nova tentativa de autenticacao",
+  "esperado": "200 / 401",
+  "statusObtido": "200 / 401",
+  "mensagem": "registro id 11 | E-mail ou senha inválidos.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT46_admin_desativar_usuario.json",
+  "passos": [
+    {
+      "descricao": "Desativação do usuário",
+      "esperado": "200 OK com ativo igual a falso e registro preservado",
+      "status": 200,
+      "mensagem": "registro id 11",
+      "duracaoMs": 18,
+      "corpo": "{\"id\":11,\"nome\":\"Bruno\",\"sobrenome\":\"Alves\",\"email\":\"contratado.b.1182096@trampo.test\",\"telefone\":\"11912345678\",\"tipo\":\"CONTRATADO\",\"ativo\":false,\"criadoEm\":\"2026-11-09T16:06:22.698093\",\"contratadoId\":6,\"contratanteId\":null}",
+      "resposta": {
+        "id": 11,
+        "nome": "Bruno",
+        "sobrenome": "Alves",
+        "email": "contratado.b.1182096@trampo.test",
+        "telefone": "11912345678",
+        "tipo": "CONTRATADO",
+        "ativo": false,
+        "criadoEm": "2026-11-09T16:06:22.698093",
+        "contratadoId": 6,
+        "contratanteId": null
+      }
+    },
+    {
+      "descricao": "Autenticação do usuário desativado",
+      "esperado": "401 Unauthorized",
+      "status": 401,
+      "mensagem": "E-mail ou senha inválidos.",
+      "duracaoMs": 7,
+      "corpo": "{\"status\":401,\"mensagem\":\"E-mail ou senha inválidos.\",\"data\":\"2026-11-09T16:06:24.1663468\"}",
+      "resposta": {
+        "status": 401,
+        "mensagem": "E-mail ou senha inválidos.",
+        "data": "2026-11-09T16:06:24.1663468"
+      }
+    }
+  ]
+}

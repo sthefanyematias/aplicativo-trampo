@@ -1,0 +1,74 @@
+{
+  "ct": "51",
+  "requisito": "RF20",
+  "tecnica": "Caso de uso",
+  "requisicao": "GET /notificacoes e GET /notificacoes/nao-lidas/quantidade",
+  "entrada": "consulta das notificacoes do contratado apos receber uma avaliacao",
+  "esperado": "200 / 200",
+  "statusObtido": "200 / 200",
+  "mensagem": "2 registro(s) retornado(s) | total 2",
+  "veredito": "APROVADO",
+  "observacao": "Notificacoes: 2. Nao lidas: 2.",
+  "arquivo": "CT51_notificacoes_listar.json",
+  "passos": [
+    {
+      "descricao": "Listagem das notificações",
+      "esperado": "200 OK com as notificações em ordem decrescente de criação",
+      "status": 200,
+      "mensagem": "2 registro(s) retornado(s)",
+      "duracaoMs": 9,
+      "corpo": "[{\"id\":8,\"usuario\":{\"id\":8,\"nome\":\"Ana\",\"sobrenome\":\"Ribeiro\",\"email\":\"contratado.1182096@trampo.test\",\"telefone\":\"11912345678\",\"tipo\":\"CONTRATADO\",\"ativo\":true,\"criadoEm\":\"2026-11-09T16:06:22.409284\"},\"titulo\":\"Você recebeu uma nova avaliação\",\"mensagem\":\"Geovana Novais avaliou você com nota 5/5 no serviço \\\"Limpeza de apartamento 1182096\\\".\",\"tipo\":\"AVALIACAO\",\"servicoId\":5,\"lida\":false,\"criadoEm\":\"2026-11-09T16:06:23.80327\"},{\"id\":7,\"usuario\":{\"id\":8,\"nome\":\"Ana\",\"sobrenome\":\"Ribeiro\",\"email\":\"contratado.1182096@trampo.test\",\"telefone\":\"11912345678\",\"tipo\":\"CONTRATADO\",\"ativo\":true,\"criadoEm\":\"2026-11-09T16:06:22.409284\"},\"titulo\":\"Serviço concluído\",\"mensagem\":\"O serviço \\\"Limpeza de apartamento 1182096\\\" foi finalizado. Avalie o contratante e acompanhe a conversa encerrada.\",\"tipo\":\"SERVICO\",\"servicoId\":5,\"lida\":false,\"criadoEm\":\"2026-11-09T16:06:23.774638\"}]",
+      "resposta": [
+        {
+          "id": 8,
+          "usuario": {
+            "id": 8,
+            "nome": "Ana",
+            "sobrenome": "Ribeiro",
+            "email": "contratado.1182096@trampo.test",
+            "telefone": "11912345678",
+            "tipo": "CONTRATADO",
+            "ativo": true,
+            "criadoEm": "2026-11-09T16:06:22.409284"
+          },
+          "titulo": "Você recebeu uma nova avaliação",
+          "mensagem": "Geovana Novais avaliou você com nota 5/5 no serviço \"Limpeza de apartamento 1182096\".",
+          "tipo": "AVALIACAO",
+          "servicoId": 5,
+          "lida": false,
+          "criadoEm": "2026-11-09T16:06:23.80327"
+        },
+        {
+          "id": 7,
+          "usuario": {
+            "id": 8,
+            "nome": "Ana",
+            "sobrenome": "Ribeiro",
+            "email": "contratado.1182096@trampo.test",
+            "telefone": "11912345678",
+            "tipo": "CONTRATADO",
+            "ativo": true,
+            "criadoEm": "2026-11-09T16:06:22.409284"
+          },
+          "titulo": "Serviço concluído",
+          "mensagem": "O serviço \"Limpeza de apartamento 1182096\" foi finalizado. Avalie o contratante e acompanhe a conversa encerrada.",
+          "tipo": "SERVICO",
+          "servicoId": 5,
+          "lida": false,
+          "criadoEm": "2026-11-09T16:06:23.774638"
+        }
+      ]
+    },
+    {
+      "descricao": "Total de não lidas",
+      "esperado": "200 OK com total igual ou superior a um",
+      "status": 200,
+      "mensagem": "total 2",
+      "duracaoMs": 9,
+      "corpo": "{\"total\":2}",
+      "resposta": {
+        "total": 2
+      }
+    }
+  ]
+}

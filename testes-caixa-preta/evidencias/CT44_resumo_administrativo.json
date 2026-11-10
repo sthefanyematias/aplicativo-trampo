@@ -1,0 +1,35 @@
+{
+  "ct": "44",
+  "requisito": "RF18",
+  "tecnica": "Caso de uso",
+  "requisicao": "GET /admin/resumo",
+  "entrada": "consulta do resumo geral pelo administrador autenticado",
+  "esperado": "200",
+  "statusObtido": "200",
+  "mensagem": "{\"usuarios\":11,\"contratados\":6,\"contratantes\":4,\"servicosAbertos\":6,\"servicosEmAndamento\":0,\"servicosConcluidos\":2,\"serv...",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT44_resumo_administrativo.json",
+  "passos": [
+    {
+      "descricao": "Consulta do resumo geral",
+      "esperado": "200 OK com totais de usuarios, perfis, servicos, candidaturas e avaliacoes",
+      "status": 200,
+      "mensagem": "{\"usuarios\":11,\"contratados\":6,\"contratantes\":4,\"servicosAbertos\":6,\"servicosEmAndamento\":0,\"servicosConcluidos\":2,\"serv...",
+      "duracaoMs": 27,
+      "corpo": "{\"usuarios\":11,\"contratados\":6,\"contratantes\":4,\"servicosAbertos\":6,\"servicosEmAndamento\":0,\"servicosConcluidos\":2,\"servicosCancelados\":0,\"candidaturasPendentes\":4,\"avaliacoes\":2,\"reportesAbertos\":0}",
+      "resposta": {
+        "usuarios": 11,
+        "contratados": 6,
+        "contratantes": 4,
+        "servicosAbertos": 6,
+        "servicosEmAndamento": 0,
+        "servicosConcluidos": 2,
+        "servicosCancelados": 0,
+        "candidaturasPendentes": 4,
+        "avaliacoes": 2,
+        "reportesAbertos": 0
+      }
+    }
+  ]
+}

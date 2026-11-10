@@ -1,0 +1,41 @@
+{
+  "ct": "48",
+  "requisito": "RF19",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "POST /reportes",
+  "entrada": "servico de terceiro e servico inexistente",
+  "esperado": "403 / 404",
+  "statusObtido": "403 / 404",
+  "mensagem": "Você não participa deste serviço. | Serviço não encontrado.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT48_suporte_servico_sem_participacao.json",
+  "passos": [
+    {
+      "descricao": "Solicitação vinculada a serviço de que não participa",
+      "esperado": "403 Forbidden",
+      "status": 403,
+      "mensagem": "Você não participa deste serviço.",
+      "duracaoMs": 10,
+      "corpo": "{\"status\":403,\"mensagem\":\"Você não participa deste serviço.\",\"data\":\"2026-11-09T16:06:24.0179568\"}",
+      "resposta": {
+        "status": 403,
+        "mensagem": "Você não participa deste serviço.",
+        "data": "2026-11-09T16:06:24.0179568"
+      }
+    },
+    {
+      "descricao": "Solicitação vinculada a serviço inexistente",
+      "esperado": "404 Not Found",
+      "status": 404,
+      "mensagem": "Serviço não encontrado.",
+      "duracaoMs": 9,
+      "corpo": "{\"status\":404,\"mensagem\":\"Serviço não encontrado.\",\"data\":\"2026-11-09T16:06:24.0265606\"}",
+      "resposta": {
+        "status": 404,
+        "mensagem": "Serviço não encontrado.",
+        "data": "2026-11-09T16:06:24.0265606"
+      }
+    }
+  ]
+}

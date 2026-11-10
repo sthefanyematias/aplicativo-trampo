@@ -1,0 +1,27 @@
+{
+  "ct": "09",
+  "requisito": "RF02",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "GET /auth/me",
+  "entrada": "cabecalho Authorization com token adulterado",
+  "esperado": "401",
+  "statusObtido": "401",
+  "mensagem": "Não autenticado.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT09_acesso_token_invalido.json",
+  "passos": [
+    {
+      "descricao": "Chamada com token invalido",
+      "esperado": "401 Unauthorized",
+      "status": 401,
+      "mensagem": "Não autenticado.",
+      "duracaoMs": 4,
+      "corpo": "{\"status\":401,\"mensagem\":\"Não autenticado.\"}",
+      "resposta": {
+        "status": 401,
+        "mensagem": "Não autenticado."
+      }
+    }
+  ]
+}

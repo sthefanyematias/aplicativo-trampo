@@ -1,0 +1,28 @@
+{
+  "ct": "11",
+  "requisito": "RF03",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "DELETE /contratados/me",
+  "entrada": "exclusao de perfil de contratado com candidaturas e servicos vinculados",
+  "esperado": "409",
+  "statusObtido": "409",
+  "mensagem": "Não é possível excluir o perfil: existem candidaturas ou serviços vinculados.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT11_perfil_contratado_excluir_com_vinculo.json",
+  "passos": [
+    {
+      "descricao": "Exclusão de perfil com vínculo",
+      "esperado": "409 Conflict",
+      "status": 409,
+      "mensagem": "Não é possível excluir o perfil: existem candidaturas ou serviços vinculados.",
+      "duracaoMs": 14,
+      "corpo": "{\"status\":409,\"mensagem\":\"Não é possível excluir o perfil: existem candidaturas ou serviços vinculados.\",\"data\":\"2026-11-09T16:06:23.9025528\"}",
+      "resposta": {
+        "status": 409,
+        "mensagem": "Não é possível excluir o perfil: existem candidaturas ou serviços vinculados.",
+        "data": "2026-11-09T16:06:23.9025528"
+      }
+    }
+  ]
+}

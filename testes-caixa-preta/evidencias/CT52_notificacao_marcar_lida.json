@@ -1,0 +1,62 @@
+{
+  "ct": "52",
+  "requisito": "RF20",
+  "tecnica": "Transicao de estados",
+  "requisicao": "PUT /notificacoes/8/ler e PUT /notificacoes/ler-todas",
+  "entrada": "marcacao de uma notificacao e de todas como lidas",
+  "esperado": "200 / 204",
+  "statusObtido": "200 / 204 / 200",
+  "mensagem": "Geovana Novais avaliou você com nota 5/5 no serviço \"Limpeza de apartamento 1182096\". | (corpo vazio) | total 0",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT52_notificacao_marcar_lida.json",
+  "passos": [
+    {
+      "descricao": "Marcação de uma notificação como lida",
+      "esperado": "200 OK com lida igual a verdadeiro",
+      "status": 200,
+      "mensagem": "Geovana Novais avaliou você com nota 5/5 no serviço \"Limpeza de apartamento 1182096\".",
+      "duracaoMs": 12,
+      "corpo": "{\"id\":8,\"usuario\":{\"id\":8,\"nome\":\"Ana\",\"sobrenome\":\"Ribeiro\",\"email\":\"contratado.1182096@trampo.test\",\"telefone\":\"11912345678\",\"tipo\":\"CONTRATADO\",\"ativo\":true,\"criadoEm\":\"2026-11-09T16:06:22.409284\"},\"titulo\":\"Você recebeu uma nova avaliação\",\"mensagem\":\"Geovana Novais avaliou você com nota 5/5 no serviço \\\"Limpeza de apartamento 1182096\\\".\",\"tipo\":\"AVALIACAO\",\"servicoId\":5,\"lida\":true,\"criadoEm\":\"2026-11-09T16:06:23.80327\"}",
+      "resposta": {
+        "id": 8,
+        "usuario": {
+          "id": 8,
+          "nome": "Ana",
+          "sobrenome": "Ribeiro",
+          "email": "contratado.1182096@trampo.test",
+          "telefone": "11912345678",
+          "tipo": "CONTRATADO",
+          "ativo": true,
+          "criadoEm": "2026-11-09T16:06:22.409284"
+        },
+        "titulo": "Você recebeu uma nova avaliação",
+        "mensagem": "Geovana Novais avaliou você com nota 5/5 no serviço \"Limpeza de apartamento 1182096\".",
+        "tipo": "AVALIACAO",
+        "servicoId": 5,
+        "lida": true,
+        "criadoEm": "2026-11-09T16:06:23.80327"
+      }
+    },
+    {
+      "descricao": "Marcação de todas como lidas",
+      "esperado": "204 No Content",
+      "status": 204,
+      "mensagem": "(corpo vazio)",
+      "duracaoMs": 16,
+      "corpo": "",
+      "resposta": ""
+    },
+    {
+      "descricao": "Total de não lidas após a marcação",
+      "esperado": "200 OK com total igual a zero",
+      "status": 200,
+      "mensagem": "total 0",
+      "duracaoMs": 9,
+      "corpo": "{\"total\":0}",
+      "resposta": {
+        "total": 0
+      }
+    }
+  ]
+}

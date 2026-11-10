@@ -1,0 +1,35 @@
+{
+  "ct": "38",
+  "requisito": "RF14",
+  "tecnica": "Caso de uso",
+  "requisicao": "GET /conversas",
+  "entrada": "consulta das conversas do contratante autenticado",
+  "esperado": "200",
+  "statusObtido": "200",
+  "mensagem": "1 registro(s) retornado(s)",
+  "veredito": "APROVADO",
+  "observacao": "Conversa localizada para o servico 5.",
+  "arquivo": "CT38_listar_conversas.json",
+  "passos": [
+    {
+      "descricao": "Listagem das conversas do usuário",
+      "esperado": "200 OK com titulo do serviço, outra parte e totais",
+      "status": 200,
+      "mensagem": "1 registro(s) retornado(s)",
+      "duracaoMs": 22,
+      "corpo": "[{\"servicoId\":5,\"titulo\":\"Limpeza de apartamento 1182096\",\"status\":\"EM_ANDAMENTO\",\"outroNome\":\"Ana Ribeiro\",\"ultimaMensagem\":\"Bom dia, posso chegar as oito horas?\",\"dataUltima\":\"2026-11-09T16:06:23.543343\",\"totalMensagens\":1,\"naoLidas\":1}]",
+      "resposta": [
+        {
+          "servicoId": 5,
+          "titulo": "Limpeza de apartamento 1182096",
+          "status": "EM_ANDAMENTO",
+          "outroNome": "Ana Ribeiro",
+          "ultimaMensagem": "Bom dia, posso chegar as oito horas?",
+          "dataUltima": "2026-11-09T16:06:23.543343",
+          "totalMensagens": 1,
+          "naoLidas": 1
+        }
+      ]
+    }
+  ]
+}

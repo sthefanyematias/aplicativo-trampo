@@ -1,0 +1,26 @@
+{
+  "ct": "37",
+  "requisito": "RF13",
+  "tecnica": "Caso de uso",
+  "requisicao": "GET /candidaturas/pendentes/quantidade",
+  "entrada": "consulta do total de candidaturas pendentes do contratante autenticado",
+  "esperado": "200",
+  "statusObtido": "200",
+  "mensagem": "total 1",
+  "veredito": "APROVADO",
+  "observacao": "Total retornado: 1.",
+  "arquivo": "CT37_consultar_pendentes.json",
+  "passos": [
+    {
+      "descricao": "Consulta do total de candidaturas pendentes",
+      "esperado": "200 OK com total igual ou superior a uma candidatura pendente",
+      "status": 200,
+      "mensagem": "total 1",
+      "duracaoMs": 10,
+      "corpo": "{\"total\":1}",
+      "resposta": {
+        "total": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "ct": "03",
+  "requisito": "RF01",
+  "tecnica": "Particionamento de equivalencia",
+  "requisicao": "POST /usuarios",
+  "entrada": "mesmo e-mail contratante.1182096@trampo.test ja cadastrado no CT01",
+  "esperado": "409",
+  "statusObtido": "409",
+  "mensagem": "Já existe um usuário com este e-mail.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT03_cadastro_email_duplicado.json",
+  "passos": [
+    {
+      "descricao": "Tentativa de cadastro com e-mail existente",
+      "esperado": "409 Conflict com mensagem de e-mail ja cadastrado",
+      "status": 409,
+      "mensagem": "Já existe um usuário com este e-mail.",
+      "duracaoMs": 13,
+      "corpo": "{\"status\":409,\"mensagem\":\"Já existe um usuário com este e-mail.\",\"data\":\"2026-11-09T16:06:22.4977774\"}",
+      "resposta": {
+        "status": 409,
+        "mensagem": "Já existe um usuário com este e-mail.",
+        "data": "2026-11-09T16:06:22.4977774"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "ct": "50",
+  "requisito": "RF19",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "GET /reportes",
+  "entrada": "consulta da lista geral de solicitacoes com perfil de contratante",
+  "esperado": "403",
+  "statusObtido": "403",
+  "mensagem": "Esta área é exclusiva da administração.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT50_suporte_acesso_negado.json",
+  "passos": [
+    {
+      "descricao": "Consulta da lista geral com perfil indevido",
+      "esperado": "403 Forbidden",
+      "status": 403,
+      "mensagem": "Esta área é exclusiva da administração.",
+      "duracaoMs": 8,
+      "corpo": "{\"status\":403,\"mensagem\":\"Esta área é exclusiva da administração.\",\"data\":\"2026-11-09T16:06:24.0352218\"}",
+      "resposta": {
+        "status": 403,
+        "mensagem": "Esta área é exclusiva da administração.",
+        "data": "2026-11-09T16:06:24.0352218"
+      }
+    }
+  ]
+}

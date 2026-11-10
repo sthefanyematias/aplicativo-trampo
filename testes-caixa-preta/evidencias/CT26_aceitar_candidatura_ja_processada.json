@@ -1,0 +1,28 @@
+{
+  "ct": "26",
+  "requisito": "RF08",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "PUT /candidaturas/4/aceitar",
+  "entrada": "novo aceite da mesma candidatura, ja ACEITA",
+  "esperado": "400",
+  "statusObtido": "400",
+  "mensagem": "Esta candidatura já foi processada.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT26_aceitar_candidatura_ja_processada.json",
+  "passos": [
+    {
+      "descricao": "Aceite de candidatura já processada",
+      "esperado": "400 Bad Request com mensagem de candidatura já processada",
+      "status": 400,
+      "mensagem": "Esta candidatura já foi processada.",
+      "duracaoMs": 13,
+      "corpo": "{\"status\":400,\"mensagem\":\"Esta candidatura já foi processada.\",\"data\":\"2026-11-09T16:06:23.5187591\"}",
+      "resposta": {
+        "status": 400,
+        "mensagem": "Esta candidatura já foi processada.",
+        "data": "2026-11-09T16:06:23.5187591"
+      }
+    }
+  ]
+}

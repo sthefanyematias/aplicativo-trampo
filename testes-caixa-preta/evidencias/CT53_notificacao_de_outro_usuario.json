@@ -1,0 +1,28 @@
+{
+  "ct": "53",
+  "requisito": "RF20",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "PUT /notificacoes/8/ler",
+  "entrada": "marcacao de notificacao pertencente a outro usuario",
+  "esperado": "403",
+  "statusObtido": "403",
+  "mensagem": "Esta notificação não pertence a você.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT53_notificacao_de_outro_usuario.json",
+  "passos": [
+    {
+      "descricao": "Marcação de notificação de outro usuário",
+      "esperado": "403 Forbidden",
+      "status": 403,
+      "mensagem": "Esta notificação não pertence a você.",
+      "duracaoMs": 7,
+      "corpo": "{\"status\":403,\"mensagem\":\"Esta notificação não pertence a você.\",\"data\":\"2026-11-09T16:06:24.1406308\"}",
+      "resposta": {
+        "status": 403,
+        "mensagem": "Esta notificação não pertence a você.",
+        "data": "2026-11-09T16:06:24.1406308"
+      }
+    }
+  ]
+}

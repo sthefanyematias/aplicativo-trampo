@@ -1,0 +1,28 @@
+{
+  "ct": "27",
+  "requisito": "RF08",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "PUT /candidaturas/4/aceitar",
+  "entrada": "aceite por contratante que nao e o responsavel pelo servico",
+  "esperado": "403",
+  "statusObtido": "403",
+  "mensagem": "Você não é o contratante responsável por este serviço.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT27_aceitar_por_outro_contratante.json",
+  "passos": [
+    {
+      "descricao": "Aceite por outro contratante",
+      "esperado": "403 Forbidden com acesso negado",
+      "status": 403,
+      "mensagem": "Você não é o contratante responsável por este serviço.",
+      "duracaoMs": 12,
+      "corpo": "{\"status\":403,\"mensagem\":\"Você não é o contratante responsável por este serviço.\",\"data\":\"2026-11-09T16:06:23.5320237\"}",
+      "resposta": {
+        "status": 403,
+        "mensagem": "Você não é o contratante responsável por este serviço.",
+        "data": "2026-11-09T16:06:23.5320237"
+      }
+    }
+  ]
+}

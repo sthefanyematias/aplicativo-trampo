@@ -1,0 +1,41 @@
+{
+  "ct": "15",
+  "requisito": "RF05",
+  "tecnica": "Analise de valor limite",
+  "requisicao": "POST /servicos/contratante/3",
+  "entrada": "horario final igual ao inicial e horario final um minuto antes do inicial",
+  "esperado": "400 / 400",
+  "statusObtido": "400 / 400",
+  "mensagem": "O horário final deve ser depois do horário inicial. | O horário final deve ser depois do horário inicial.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT15_publicar_horario_invalido.json",
+  "passos": [
+    {
+      "descricao": "Horário final igual ao inicial",
+      "esperado": "400 Bad Request",
+      "status": 400,
+      "mensagem": "O horário final deve ser depois do horário inicial.",
+      "duracaoMs": 10,
+      "corpo": "{\"status\":400,\"mensagem\":\"O horário final deve ser depois do horário inicial.\",\"data\":\"2026-11-09T16:06:23.2564138\"}",
+      "resposta": {
+        "status": 400,
+        "mensagem": "O horário final deve ser depois do horário inicial.",
+        "data": "2026-11-09T16:06:23.2564138"
+      }
+    },
+    {
+      "descricao": "Horário final um minuto antes do inicial",
+      "esperado": "400 Bad Request",
+      "status": 400,
+      "mensagem": "O horário final deve ser depois do horário inicial.",
+      "duracaoMs": 11,
+      "corpo": "{\"status\":400,\"mensagem\":\"O horário final deve ser depois do horário inicial.\",\"data\":\"2026-11-09T16:06:23.2660633\"}",
+      "resposta": {
+        "status": 400,
+        "mensagem": "O horário final deve ser depois do horário inicial.",
+        "data": "2026-11-09T16:06:23.2660633"
+      }
+    }
+  ]
+}

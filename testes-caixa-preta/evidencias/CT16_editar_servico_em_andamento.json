@@ -1,0 +1,28 @@
+{
+  "ct": "16",
+  "requisito": "RF05",
+  "tecnica": "Transicao de estados",
+  "requisicao": "PUT /servicos/5",
+  "entrada": "edicao de servico que ja esta em andamento",
+  "esperado": "400",
+  "statusObtido": "400",
+  "mensagem": "Só é possível editar serviços abertos.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT16_editar_servico_em_andamento.json",
+  "passos": [
+    {
+      "descricao": "Edição de serviço já iniciado",
+      "esperado": "400 Bad Request",
+      "status": 400,
+      "mensagem": "Só é possível editar serviços abertos.",
+      "duracaoMs": 11,
+      "corpo": "{\"status\":400,\"mensagem\":\"Só é possível editar serviços abertos.\",\"data\":\"2026-11-09T16:06:23.7479275\"}",
+      "resposta": {
+        "status": 400,
+        "mensagem": "Só é possível editar serviços abertos.",
+        "data": "2026-11-09T16:06:23.7479275"
+      }
+    }
+  ]
+}

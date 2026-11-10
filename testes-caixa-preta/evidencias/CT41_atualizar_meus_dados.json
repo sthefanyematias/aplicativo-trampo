@@ -1,0 +1,35 @@
+{
+  "ct": "41",
+  "requisito": "RF16",
+  "tecnica": "Particionamento de equivalencia",
+  "requisicao": "PUT /usuarios/me",
+  "entrada": "nome, sobrenome e telefone validos do proprio usuario",
+  "esperado": "200",
+  "statusObtido": "200",
+  "mensagem": "registro id 7",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT41_atualizar_meus_dados.json",
+  "passos": [
+    {
+      "descricao": "Atualização dos dados do próprio usuário",
+      "esperado": "200 OK com os dados atualizados",
+      "status": 200,
+      "mensagem": "registro id 7",
+      "duracaoMs": 24,
+      "corpo": "{\"id\":7,\"nome\":\"Geovana\",\"sobrenome\":\"Novais\",\"email\":\"contratante.1182096@trampo.test\",\"telefone\":\"11999990000\",\"tipo\":\"CONTRATANTE\",\"ativo\":true,\"criadoEm\":\"2026-11-09T16:06:22.312108\",\"contratadoId\":null,\"contratanteId\":3}",
+      "resposta": {
+        "id": 7,
+        "nome": "Geovana",
+        "sobrenome": "Novais",
+        "email": "contratante.1182096@trampo.test",
+        "telefone": "11999990000",
+        "tipo": "CONTRATANTE",
+        "ativo": true,
+        "criadoEm": "2026-11-09T16:06:22.312108",
+        "contratadoId": null,
+        "contratanteId": 3
+      }
+    }
+  ]
+}

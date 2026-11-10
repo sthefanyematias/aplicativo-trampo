@@ -1,0 +1,28 @@
+{
+  "ct": "33",
+  "requisito": "RF10",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "POST /mensagens/servico/5/remetente/11",
+  "entrada": "mensagem de usuario que nao participa do servico",
+  "esperado": "403",
+  "statusObtido": "403",
+  "mensagem": "Você não participa deste serviço.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT33_mensagem_nao_participante.json",
+  "passos": [
+    {
+      "descricao": "Envio de mensagem por não participante",
+      "esperado": "403 Forbidden com acesso negado",
+      "status": 403,
+      "mensagem": "Você não participa deste serviço.",
+      "duracaoMs": 14,
+      "corpo": "{\"status\":403,\"mensagem\":\"Você não participa deste serviço.\",\"data\":\"2026-11-09T16:06:23.5643716\"}",
+      "resposta": {
+        "status": 403,
+        "mensagem": "Você não participa deste serviço.",
+        "data": "2026-11-09T16:06:23.5643716"
+      }
+    }
+  ]
+}

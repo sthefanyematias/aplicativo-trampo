@@ -1,0 +1,27 @@
+{
+  "ct": "08",
+  "requisito": "RF02",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "GET /auth/me",
+  "entrada": "requisicao sem cabecalho Authorization",
+  "esperado": "401",
+  "statusObtido": "401",
+  "mensagem": "Não autenticado.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT08_acesso_sem_token.json",
+  "passos": [
+    {
+      "descricao": "Chamada a rota protegida sem token",
+      "esperado": "401 Unauthorized",
+      "status": 401,
+      "mensagem": "Não autenticado.",
+      "duracaoMs": 3,
+      "corpo": "{\"status\":401,\"mensagem\":\"Não autenticado.\"}",
+      "resposta": {
+        "status": 401,
+        "mensagem": "Não autenticado."
+      }
+    }
+  ]
+}

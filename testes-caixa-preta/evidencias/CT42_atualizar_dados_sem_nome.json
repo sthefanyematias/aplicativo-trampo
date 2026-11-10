@@ -1,0 +1,28 @@
+{
+  "ct": "42",
+  "requisito": "RF16",
+  "tecnica": "Analise de valor limite",
+  "requisicao": "PUT /usuarios/me",
+  "entrada": "campo nome vazio",
+  "esperado": "400",
+  "statusObtido": "400",
+  "mensagem": "O nome é obrigatório.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT42_atualizar_dados_sem_nome.json",
+  "passos": [
+    {
+      "descricao": "Atualização com nome vazio",
+      "esperado": "400 Bad Request com mensagem de campo obrigatorio",
+      "status": 400,
+      "mensagem": "O nome é obrigatório.",
+      "duracaoMs": 10,
+      "corpo": "{\"status\":400,\"mensagem\":\"O nome é obrigatório.\",\"data\":\"2026-11-09T16:06:23.1719414\"}",
+      "resposta": {
+        "status": 400,
+        "mensagem": "O nome é obrigatório.",
+        "data": "2026-11-09T16:06:23.1719414"
+      }
+    }
+  ]
+}

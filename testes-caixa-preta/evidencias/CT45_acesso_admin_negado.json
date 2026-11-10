@@ -1,0 +1,27 @@
+{
+  "ct": "45",
+  "requisito": "RF18",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "GET /admin/resumo",
+  "entrada": "acesso ao resumo com perfil de contratante",
+  "esperado": "403",
+  "statusObtido": "403",
+  "mensagem": "Acesso negado.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT45_acesso_admin_negado.json",
+  "passos": [
+    {
+      "descricao": "Acesso ao resumo com perfil indevido",
+      "esperado": "403 Forbidden",
+      "status": 403,
+      "mensagem": "Acesso negado.",
+      "duracaoMs": 7,
+      "corpo": "{\"status\":403,\"mensagem\":\"Acesso negado.\"}",
+      "resposta": {
+        "status": 403,
+        "mensagem": "Acesso negado."
+      }
+    }
+  ]
+}

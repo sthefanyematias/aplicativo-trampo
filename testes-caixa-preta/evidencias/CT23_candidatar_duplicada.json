@@ -1,0 +1,28 @@
+{
+  "ct": "23",
+  "requisito": "RF07",
+  "tecnica": "Tabela de decisao",
+  "requisicao": "POST /candidaturas/servico/5/contratado/4",
+  "entrada": "segunda candidatura do mesmo contratado ao mesmo servico",
+  "esperado": "409",
+  "statusObtido": "409",
+  "mensagem": "Você já se candidatou a este serviço.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT23_candidatar_duplicada.json",
+  "passos": [
+    {
+      "descricao": "Segunda candidatura ao mesmo serviço",
+      "esperado": "409 Conflict",
+      "status": 409,
+      "mensagem": "Você já se candidatou a este serviço.",
+      "duracaoMs": 17,
+      "corpo": "{\"status\":409,\"mensagem\":\"Você já se candidatou a este serviço.\",\"data\":\"2026-11-09T16:06:23.4418616\"}",
+      "resposta": {
+        "status": 409,
+        "mensagem": "Você já se candidatou a este serviço.",
+        "data": "2026-11-09T16:06:23.4418616"
+      }
+    }
+  ]
+}

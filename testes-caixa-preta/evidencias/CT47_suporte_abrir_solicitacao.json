@@ -1,0 +1,108 @@
+{
+  "ct": "47",
+  "requisito": "RF19",
+  "tecnica": "Caso de uso",
+  "requisicao": "POST /reportes",
+  "entrada": "assunto, descricao e servico de que o usuario participa",
+  "esperado": "201",
+  "statusObtido": "201",
+  "mensagem": "registro id 2",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT47_suporte_abrir_solicitacao.json",
+  "passos": [
+    {
+      "descricao": "Abertura de solicitação de suporte",
+      "esperado": "201 Created com status ABERTO",
+      "status": 201,
+      "mensagem": "registro id 2",
+      "duracaoMs": 15,
+      "corpo": "{\"id\":2,\"usuario\":{\"id\":7,\"nome\":\"Geovana\",\"sobrenome\":\"Novais\",\"email\":\"contratante.1182096@trampo.test\",\"telefone\":\"11999990000\",\"tipo\":\"CONTRATANTE\",\"ativo\":true,\"criadoEm\":\"2026-11-09T16:06:22.312108\"},\"servico\":{\"id\":5,\"contratante\":{\"id\":3,\"usuario\":{\"id\":7,\"nome\":\"Geovana\",\"sobrenome\":\"Novais\",\"email\":\"contratante.1182096@trampo.test\",\"telefone\":\"11999990000\",\"tipo\":\"CONTRATANTE\",\"ativo\":true,\"criadoEm\":\"2026-11-09T16:06:22.312108\"},\"tipoPessoa\":\"FISICA\",\"cpfCnpj\":\"12345678909\",\"cep\":\"01310100\",\"logradouro\":\"Avenida Paulista\",\"numero\":\"1000\",\"complemento\":\"Apto 51\",\"bairro\":\"Bela Vista\",\"cidade\":\"Sao Paulo\",\"uf\":\"SP\",\"latitude\":-23.5505,\"longitude\":-46.6333},\"contratado\":{\"id\":4,\"usuario\":{\"id\":8,\"nome\":\"Ana\",\"sobrenome\":\"Ribeiro\",\"email\":\"contratado.1182096@trampo.test\",\"telefone\":\"11912345678\",\"tipo\":\"CONTRATADO\",\"ativo\":true,\"criadoEm\":\"2026-11-09T16:06:22.409284\"},\"descricao\":\"Profissional com cinco anos de experiencia em limpeza residencial e comercial.\",\"servicos\":\"Diarista, passadoria e organizacao\",\"disponibilidade\":\"Segunda a sexta, periodo da manha\",\"cep\":\"04094050\",\"logradouro\":\"Rua das Diaristas\",\"numero\":\"45\",\"complemento\":\"Casa 2\",\"bairro\":\"Vila Clementino\",\"cidade\":\"Sao Paulo\",\"uf\":\"SP\",\"latitude\":-23.592,\"longitude\":-46.638,\"raioBuscaKm\":12,\"mediaAvaliacao\":5},\"titulo\":\"Limpeza de apartamento 1182096\",\"descricao\":\"Servico de limpeza residencial de apartamento de dois quartos.\",\"valor\":180,\"dataServico\":\"2026-12-20\",\"horaInicio\":\"08:00:00\",\"horaFim\":\"12:00:00\",\"periodo\":\"MANHA\",\"status\":\"CONCLUIDO\",\"endereco\":\"Avenida Paulista, 1000 - Apto 51 - Bela Vista, Sao Paulo/SP\",\"latitude\":-23.5505,\"longitude\":-46.6333,\"criadoEm\":\"2026-11-09T16:06:23.227589\"},\"assunto\":\"PROBLEMA_COM_SERVICO\",\"descricao\":\"O profissional nao compareceu no horario combinado para o servico.\",\"status\":\"ABERTO\",\"resposta\":null,\"criadoEm\":\"2026-11-09T16:06:24.0008398\",\"resolvidoEm\":null}",
+      "resposta": {
+        "id": 2,
+        "usuario": {
+          "id": 7,
+          "nome": "Geovana",
+          "sobrenome": "Novais",
+          "email": "contratante.1182096@trampo.test",
+          "telefone": "11999990000",
+          "tipo": "CONTRATANTE",
+          "ativo": true,
+          "criadoEm": "2026-11-09T16:06:22.312108"
+        },
+        "servico": {
+          "id": 5,
+          "contratante": {
+            "id": 3,
+            "usuario": {
+              "id": 7,
+              "nome": "Geovana",
+              "sobrenome": "Novais",
+              "email": "contratante.1182096@trampo.test",
+              "telefone": "11999990000",
+              "tipo": "CONTRATANTE",
+              "ativo": true,
+              "criadoEm": "2026-11-09T16:06:22.312108"
+            },
+            "tipoPessoa": "FISICA",
+            "cpfCnpj": "12345678909",
+            "cep": "01310100",
+            "logradouro": "Avenida Paulista",
+            "numero": "1000",
+            "complemento": "Apto 51",
+            "bairro": "Bela Vista",
+            "cidade": "Sao Paulo",
+            "uf": "SP",
+            "latitude": -23.5505,
+            "longitude": -46.6333
+          },
+          "contratado": {
+            "id": 4,
+            "usuario": {
+              "id": 8,
+              "nome": "Ana",
+              "sobrenome": "Ribeiro",
+              "email": "contratado.1182096@trampo.test",
+              "telefone": "11912345678",
+              "tipo": "CONTRATADO",
+              "ativo": true,
+              "criadoEm": "2026-11-09T16:06:22.409284"
+            },
+            "descricao": "Profissional com cinco anos de experiencia em limpeza residencial e comercial.",
+            "servicos": "Diarista, passadoria e organizacao",
+            "disponibilidade": "Segunda a sexta, periodo da manha",
+            "cep": "04094050",
+            "logradouro": "Rua das Diaristas",
+            "numero": "45",
+            "complemento": "Casa 2",
+            "bairro": "Vila Clementino",
+            "cidade": "Sao Paulo",
+            "uf": "SP",
+            "latitude": -23.592,
+            "longitude": -46.638,
+            "raioBuscaKm": 12,
+            "mediaAvaliacao": 5
+          },
+          "titulo": "Limpeza de apartamento 1182096",
+          "descricao": "Servico de limpeza residencial de apartamento de dois quartos.",
+          "valor": 180,
+          "dataServico": "2026-12-20",
+          "horaInicio": "08:00:00",
+          "horaFim": "12:00:00",
+          "periodo": "MANHA",
+          "status": "CONCLUIDO",
+          "endereco": "Avenida Paulista, 1000 - Apto 51 - Bela Vista, Sao Paulo/SP",
+          "latitude": -23.5505,
+          "longitude": -46.6333,
+          "criadoEm": "2026-11-09T16:06:23.227589"
+        },
+        "assunto": "PROBLEMA_COM_SERVICO",
+        "descricao": "O profissional nao compareceu no horario combinado para o servico.",
+        "status": "ABERTO",
+        "resposta": null,
+        "criadoEm": "2026-11-09T16:06:24.0008398",
+        "resolvidoEm": null
+      }
+    }
+  ]
+}

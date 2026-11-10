@@ -1,0 +1,76 @@
+COMO EXECUTAR OS TESTES DE CAIXA PRETA DO TRAMPO
+================================================
+
+VERSAO 2, corrigida em 09/11/2026
+
+A versao 1 lia a lista paginada no campo "content", mas a API do Trampo
+serializa essa lista no campo "conteudo" (classe PaginaResponse). Por isso cinco
+casos (CT20, CT21, CT35, CT39 e CT40) foram reprovados indevidamente: o script
+avaliava uma lista vazia. A versao 2 le o campo correto e tambem confere a
+ordenacao por distancia calculando a distancia de cada servico retornado.
+
+Se voce ja executou a versao 1, execute a versao 2 novamente. Os casos que
+reprovaram por esse motivo devem passar. Se o CT20 continuar reprovado, entao ha
+um defeito real de ordenacao, e o arquivo evidencias/CT20_*.json trara as
+distancias calculadas para comprovar.
+
+O arquivo executar-caixa-preta.mjs percorre os 53 casos de teste do Plano
+(CT01 a CT53) contra a sua API, na ordem exigida pelas pre-condicoes de estado,
+e grava as evidencias de execucao.
+
+PRE-REQUISITOS
+--------------
+1. Backend do Trampo em execucao (mvn spring-boot:run ou pela IDE).
+2. MySQL com o schema trampo acessivel.
+3. Node.js 18 ou superior instalado (o mesmo que voce usa no Expo).
+   Para conferir, execute: node --version
+4. Credenciais do usuario administrador, definidas em application.properties
+   nas propriedades trampo.admin.email e trampo.admin.senha.
+
+OBSERVACAO IMPORTANTE
+---------------------
+Recomenda-se executar com o banco em estado limpo, porque os casos criam
+usuarios, servicos e avaliacoes. O proprio script gera e-mails unicos a cada
+execucao, de modo que ele pode ser repetido, mas a base acumula registros.
+
+Defina TESTE_SENHA, ADMIN_EMAIL e ADMIN_SENHA antes de executar.
+
+PASSO A PASSO NO WINDOWS (PowerShell)
+-------------------------------------
+1. Abra o PowerShell na pasta em que salvou o arquivo.
+
+2. Execute, substituindo os valores pelos seus:
+
+   $env:BASE_URL="http://localhost:8080"
+   $env:ADMIN_EMAIL="admin@trampo.com"
+   $env:ADMIN_SENHA="sua-senha-admin"
+   node .\executar-caixa-preta.mjs
+
+   Se o backend estiver em outra porta, altere a BASE_URL.
+
+3. O script imprime uma linha por caso, no formato:
+   [OK  ] CT01 Cadastro_Contratante | esperado 201 | obtido 201
+
+4. Ao final ele mostra o resumo (aprovados, reprovados e bloqueados) e a lista
+   dos casos reprovados, que serao os candidatos a registro de defeito na
+   secao 3.4 do relatorio.
+
+ARQUIVOS GERADOS
+----------------
+- resultados.csv          tabela com caso, requisito, tecnica, entrada,
+                          esperado, status obtido, mensagem, veredito e
+                          arquivo de evidencia. E a fonte da secao 3.2.
+- relatorio-execucao.html aba com a tabela completa e o detalhamento dos casos
+                          nao aprovados. Abra no navegador e use Ctrl+P para
+                          gerar o PDF que sera anexado ao trabalho.
+- evidencias/CTxx_*.json  requisicao e resposta completas de cada caso.
+
+O QUE ENVIAR DE VOLTA
+---------------------
+1. O arquivo resultados.csv.
+2. As linhas do console que mostram os casos REPROVADOS, se houver.
+3. As capturas de tela dos casos de excecao que voce quiser usar na secao 3.3
+   (o script indica quais casos falharam, e esses sao os mais importantes).
+
+Se a execucao parar por erro de conexao, verifique se o backend esta no ar e se
+a porta informada em BASE_URL e a mesma do console do Spring Boot.

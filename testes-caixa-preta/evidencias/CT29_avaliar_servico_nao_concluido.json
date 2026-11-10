@@ -1,0 +1,28 @@
+{
+  "ct": "29",
+  "requisito": "RF09",
+  "tecnica": "Transicao de estados",
+  "requisicao": "POST /avaliacoes/servico/7/avaliador/10/avaliado/11",
+  "entrada": "avaliacao de servico no estado ABERTO",
+  "esperado": "400",
+  "statusObtido": "400",
+  "mensagem": "Só é possível avaliar serviços concluídos.",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT29_avaliar_servico_nao_concluido.json",
+  "passos": [
+    {
+      "descricao": "Avaliação de serviço não concluído",
+      "esperado": "400 Bad Request",
+      "status": 400,
+      "mensagem": "Só é possível avaliar serviços concluídos.",
+      "duracaoMs": 13,
+      "corpo": "{\"status\":400,\"mensagem\":\"Só é possível avaliar serviços concluídos.\",\"data\":\"2026-11-09T16:06:23.8353969\"}",
+      "resposta": {
+        "status": 400,
+        "mensagem": "Só é possível avaliar serviços concluídos.",
+        "data": "2026-11-09T16:06:23.8353969"
+      }
+    }
+  ]
+}

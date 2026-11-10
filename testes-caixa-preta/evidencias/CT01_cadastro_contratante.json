@@ -1,0 +1,35 @@
+{
+  "ct": "01",
+  "requisito": "RF01",
+  "tecnica": "Particionamento de equivalencia e tabela de decisao",
+  "requisicao": "POST /usuarios",
+  "entrada": "nome, sobrenome, e-mail contratante.1182096@trampo.test, telefone, senha com 10 caracteres, tipo CONTRATANTE, tipo de pessoa e CPF, endereco completo, latitude e longitude",
+  "esperado": "201",
+  "statusObtido": "201",
+  "mensagem": "registro id 7",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT01_cadastro_contratante.json",
+  "passos": [
+    {
+      "descricao": "Cadastro do contratante com dados validos",
+      "esperado": "201 Created com usuario e perfil criados",
+      "status": 201,
+      "mensagem": "registro id 7",
+      "duracaoMs": 80,
+      "corpo": "{\"id\":7,\"nome\":\"Geovana\",\"sobrenome\":\"Novais\",\"email\":\"contratante.1182096@trampo.test\",\"telefone\":\"11987654321\",\"tipo\":\"CONTRATANTE\",\"ativo\":true,\"criadoEm\":\"2026-11-09T16:06:22.3121078\",\"contratadoId\":null,\"contratanteId\":3}",
+      "resposta": {
+        "id": 7,
+        "nome": "Geovana",
+        "sobrenome": "Novais",
+        "email": "contratante.1182096@trampo.test",
+        "telefone": "11987654321",
+        "tipo": "CONTRATANTE",
+        "ativo": true,
+        "criadoEm": "2026-11-09T16:06:22.3121078",
+        "contratadoId": null,
+        "contratanteId": 3
+      }
+    }
+  ]
+}

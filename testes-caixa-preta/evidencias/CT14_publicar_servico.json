@@ -1,0 +1,63 @@
+{
+  "ct": "14",
+  "requisito": "RF05",
+  "tecnica": "Caso de uso e particionamento de equivalencia",
+  "requisicao": "POST /servicos/contratante/3",
+  "entrada": "titulo, descricao, valor, data, faixa de horario, periodo e local herdado do perfil",
+  "esperado": "201",
+  "statusObtido": "201",
+  "mensagem": "registro id 5",
+  "veredito": "APROVADO",
+  "observacao": "",
+  "arquivo": "CT14_publicar_servico.json",
+  "passos": [
+    {
+      "descricao": "Publicação de serviço com dados completos",
+      "esperado": "201 Created com serviço no estado ABERTO",
+      "status": 201,
+      "mensagem": "registro id 5",
+      "duracaoMs": 26,
+      "corpo": "{\"id\":5,\"contratante\":{\"id\":3,\"usuario\":{\"id\":7,\"nome\":\"Geovana\",\"sobrenome\":\"Novais\",\"email\":\"contratante.1182096@trampo.test\",\"telefone\":\"11999990000\",\"tipo\":\"CONTRATANTE\",\"ativo\":true,\"criadoEm\":\"2026-11-09T16:06:22.312108\"},\"tipoPessoa\":\"FISICA\",\"cpfCnpj\":\"12345678909\",\"cep\":\"01310100\",\"logradouro\":\"Avenida Paulista\",\"numero\":\"1000\",\"complemento\":\"Apto 51\",\"bairro\":\"Bela Vista\",\"cidade\":\"Sao Paulo\",\"uf\":\"SP\",\"latitude\":-23.5505,\"longitude\":-46.6333},\"contratado\":null,\"titulo\":\"Limpeza de apartamento 1182096\",\"descricao\":\"Servico de limpeza residencial de apartamento de dois quartos.\",\"valor\":180,\"dataServico\":\"2026-12-20\",\"horaInicio\":\"08:00:00\",\"horaFim\":\"12:00:00\",\"periodo\":\"MANHA\",\"status\":\"ABERTO\",\"endereco\":\"Avenida Paulista, 1000 - Apto 51 - Bela Vista, Sao Paulo/SP\",\"latitude\":-23.5505,\"longitude\":-46.6333,\"criadoEm\":\"2026-11-09T16:06:23.2275889\"}",
+      "resposta": {
+        "id": 5,
+        "contratante": {
+          "id": 3,
+          "usuario": {
+            "id": 7,
+            "nome": "Geovana",
+            "sobrenome": "Novais",
+            "email": "contratante.1182096@trampo.test",
+            "telefone": "11999990000",
+            "tipo": "CONTRATANTE",
+            "ativo": true,
+            "criadoEm": "2026-11-09T16:06:22.312108"
+          },
+          "tipoPessoa": "FISICA",
+          "cpfCnpj": "12345678909",
+          "cep": "01310100",
+          "logradouro": "Avenida Paulista",
+          "numero": "1000",
+          "complemento": "Apto 51",
+          "bairro": "Bela Vista",
+          "cidade": "Sao Paulo",
+          "uf": "SP",
+          "latitude": -23.5505,
+          "longitude": -46.6333
+        },
+        "contratado": null,
+        "titulo": "Limpeza de apartamento 1182096",
+        "descricao": "Servico de limpeza residencial de apartamento de dois quartos.",
+        "valor": 180,
+        "dataServico": "2026-12-20",
+        "horaInicio": "08:00:00",
+        "horaFim": "12:00:00",
+        "periodo": "MANHA",
+        "status": "ABERTO",
+        "endereco": "Avenida Paulista, 1000 - Apto 51 - Bela Vista, Sao Paulo/SP",
+        "latitude": -23.5505,
+        "longitude": -46.6333,
+        "criadoEm": "2026-11-09T16:06:23.2275889"
+      }
+    }
+  ]
+}
