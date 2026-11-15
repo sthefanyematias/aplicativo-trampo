@@ -84,6 +84,7 @@ export default function TelaServico() {
             const souEuQuePubliquei = idDoContratante === usuario.id;
             const souEuQueTrabalho = idDoContratado === usuario.id;
             const participo = souEuQuePubliquei || souEuQueTrabalho;
+            const temTrabalhador = Boolean(dados.contratado?.id);
 
             if (souEuQuePubliquei && dados.status === 'ABERTO') {
                 const pagina = await listarCandidaturasPorServico(idDoServico);
@@ -108,7 +109,7 @@ export default function TelaServico() {
                 setBioContratante(null);
             }
 
-            if (participo) {
+            if (participo && temTrabalhador) {
                 const mensagens = await listarMensagens(idDoServico, { pagina: 0, tamanho: 100 });
                 const conteudo = mensagens?.conteudo ?? [];
 
@@ -263,6 +264,7 @@ export default function TelaServico() {
     const encerrado = servico.status === 'CONCLUIDO' || servico.status === 'CANCELADO';
     const jaCandidatou = Boolean(minhaCandidatura);
     const temConversa = conversa.total > 0;
+    const temTrabalhador = Boolean(servico.contratado?.id);
 
     return (
         <Tela>
@@ -325,7 +327,7 @@ export default function TelaServico() {
                                 ) : null}
                             </View>
 
-                            {temConversa && !encerrado ? (
+                            {temConversa && !encerrado && temTrabalhador ? (
                                 <View style={styles.selo}>
                                     <Text style={styles.seloTexto}>
                                         {conversa.total}{' '}
@@ -335,7 +337,13 @@ export default function TelaServico() {
                             ) : null}
                         </View>
 
-                        {temConversa ? (
+                        {!temTrabalhador ? (
+                            <Text style={styles.informacao}>
+                                {encerrado
+                                    ? 'Nenhuma conversa foi iniciada porque nenhuma candidatura foi aceita.'
+                                    : 'A conversa será liberada automaticamente depois que você aceitar uma candidatura.'}
+                            </Text>
+                        ) : temConversa ? (
                             <>
                                 <Text style={styles.informacao} numberOfLines={2}>
                                     {conversa.ultima?.conteudo}
@@ -365,14 +373,31 @@ export default function TelaServico() {
 
                         <Botao
                             titulo={
-                                encerrado
-                                    ? 'Ver histórico da conversa'
-                                    : temConversa
-                                      ? 'Continuar conversa'
-                                      : 'Abrir conversa'
+                                !temTrabalhador
+                                    ? encerrado
+                                        ? 'Conversa indisponível'
+                                        : 'Aguardando candidatura aceita'
+                                    : encerrado
+                                      ? 'Ver histórico da conversa'
+                                      : temConversa
+                                        ? 'Continuar conversa'
+                                        : 'Abrir conversa'
                             }
-                            icone={encerrado ? 'lock-closed-outline' : 'chatbubble-ellipses-outline'}
-                            variante={encerrado ? 'claro' : temConversa ? 'azul' : 'claro'}
+                            icone={
+                                !temTrabalhador
+                                    ? 'lock-closed-outline'
+                                    : encerrado
+                                      ? 'lock-closed-outline'
+                                      : 'chatbubble-ellipses-outline'
+                            }
+                            variante={
+                                !temTrabalhador || encerrado
+                                    ? 'claro'
+                                    : temConversa
+                                      ? 'azul'
+                                      : 'claro'
+                            }
+                            desabilitado={!temTrabalhador}
                             onPress={() => router.push('/conversa?id=' + idDoServico)}
                         />
                     </Vidro>
@@ -427,34 +452,38 @@ export default function TelaServico() {
                         ) : (
                             candidaturas.map((candidatura) => (
                                 <View key={candidatura.id} style={styles.candidatura}>
-                                    <View style={styles.avatarCandidato}>
-                                        <Text style={styles.avatarLetra}>
-                                            {String(candidatura.contratado?.usuario?.nome || 'T')
-                                                .charAt(0)
-                                                .toUpperCase()}
-                                        </Text>
-                                    </View>
+                                    <View style={styles.candidaturaTopo}>
+                                        <View style={styles.avatarCandidato}>
+                                            <Text style={styles.avatarLetra}>
+                                                {String(candidatura.contratado?.usuario?.nome || 'T')
+                                                    .charAt(0)
+                                                    .toUpperCase()}
+                                            </Text>
+                                        </View>
 
-                                    <View style={styles.areaTexto}>
-                                        <Text style={styles.nomeTrabalhador}>
-                                            {primeiroNome(candidatura.contratado?.usuario?.nome) ||
-                                                'Trabalhador'}
-                                        </Text>
-                                        <Text style={styles.informacao} numberOfLines={2}>
-                                            {candidatura.contratado?.servicos || 'Sem descrição'}
-                                        </Text>
-                                        <EtiquetaStatus status={candidatura.status} />
+                                        <View style={styles.areaTexto}>
+                                            <Text style={styles.nomeTrabalhador}>
+                                                {primeiroNome(
+                                                    candidatura.contratado?.usuario?.nome
+                                                ) || 'Trabalhador'}
+                                            </Text>
+                                            <Text style={styles.informacao} numberOfLines={2}>
+                                                {candidatura.contratado?.servicos || 'Sem descrição'}
+                                            </Text>
+                                            <EtiquetaStatus status={candidatura.status} />
+                                        </View>
                                     </View>
 
                                     {candidatura.status === 'PENDENTE' ? (
-                                        <Botao
-                                            titulo="Aceitar"
-                                            compacto
-                                            carregando={
-                                                acaoEmAndamento === 'aceitar-' + candidatura.id
-                                            }
-                                            onPress={() => aoAceitar(candidatura.id)}
-                                        />
+                                        <View style={styles.candidaturaAcoes}>
+                                            <Botao
+                                                titulo="Aceitar candidatura"
+                                                carregando={
+                                                    acaoEmAndamento === 'aceitar-' + candidatura.id
+                                                }
+                                                onPress={() => aoAceitar(candidatura.id)}
+                                            />
+                                        </View>
                                     ) : null}
                                 </View>
                             ))
@@ -776,14 +805,20 @@ const styles = StyleSheet.create({
     candidaturaTitulo: { fontSize: 14, fontWeight: '700', color: cores.sucesso },
     candidaturaDica: { fontSize: 12, color: cores.sucesso },
     candidatura: {
-        flexDirection: 'row',
-        alignItems: 'center',
         borderWidth: 1,
         borderColor: cores.borda,
         borderRadius: raios.pequeno,
         padding: espacos.md,
         marginTop: espacos.sm,
         gap: espacos.sm,
+    },
+    candidaturaTopo: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: espacos.sm,
+    },
+    candidaturaAcoes: {
+        marginTop: espacos.xs,
     },
     areaTexto: { flex: 1, gap: 4 },
     linhaBio: { flexDirection: 'row', alignItems: 'center', gap: espacos.md },

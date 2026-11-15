@@ -48,32 +48,30 @@ export default function TelaProximos() {
     async function iniciar() {
         try {
             const perfil = await meuPerfilContratado();
+            const raioPerfil = Number(perfil.raioBuscaKm ?? 10);
+
             setEndereco(montarEndereco(perfil));
-            setRaio(String(Math.round(Number(perfil.raioBuscaKm ?? 10))));
+            setRaio(String(Math.round(raioPerfil)));
 
             if (perfil.latitude !== null && perfil.longitude !== null) {
                 setPonto({ latitude: perfil.latitude, longitude: perfil.longitude });
-                await buscarCom(
-                    perfil.latitude,
-                    perfil.longitude,
-                    Number(perfil.raioBuscaKm ?? 10)
-                );
+                await buscarCom(perfil.latitude, perfil.longitude, raioPerfil);
             } else {
-                await usarGps();
+                await usarGps(raioPerfil);
             }
         } catch (e) {
             if (e.status !== 404) setErro(e.message);
-            await usarGps();
+            await usarGps(transformarRaio(raio));
         } finally {
             setCarregandoPerfil(false);
         }
     }
 
-    async function usarGps() {
+    async function usarGps(raioKm = transformarRaio(raio)) {
         try {
             const local = await obterLocalizacao();
             setPonto(local);
-            await buscarCom(local.latitude, local.longitude, transformarRaio(raio));
+            await buscarCom(local.latitude, local.longitude, raioKm);
         } catch (e) {
             setErro(e.message);
             setCarregandoPerfil(false);
@@ -179,7 +177,7 @@ export default function TelaProximos() {
                                 icone="locate-outline"
                                 variante="claro"
                                 compacto
-                                onPress={usarGps}
+                                onPress={() => usarGps()}
                             />
 
                             <CampoTexto

@@ -1,5 +1,6 @@
-
 package br.com.trampo.controller;
+
+import java.time.LocalDate;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,7 +52,8 @@ public class AdminController {
         resposta.setUsuarios(usuarioRepository.count());
         resposta.setContratados(contratadoRepository.count());
         resposta.setContratantes(contratanteRepository.count());
-        resposta.setServicosAbertos(servicoRepository.countByStatus(StatusServico.ABERTO));
+        resposta.setServicosAbertos(servicoRepository.countByStatusAndDataServicoGreaterThanEqual(
+                StatusServico.ABERTO, LocalDate.now()));
         resposta.setServicosEmAndamento(servicoRepository.countByStatus(StatusServico.EM_ANDAMENTO));
         resposta.setServicosConcluidos(servicoRepository.countByStatus(StatusServico.CONCLUIDO));
         resposta.setServicosCancelados(servicoRepository.countByStatus(StatusServico.CANCELADO));

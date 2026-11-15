@@ -1,4 +1,3 @@
-
 package br.com.trampo.service;
 
 import java.util.List;
@@ -100,6 +99,11 @@ public class MensagemService {
     private void validarParticipante(Servico servico, Usuario usuario) {
         if (usuario.getTipo() == TipoUsuario.ADMIN) {
             return;
+        }
+
+        if (servico.getContratado() == null) {
+            throw new RegraNegocioException(
+                    "A conversa só é liberada depois que o contratante aceitar uma candidatura.");
         }
 
         Long idContratante = servico.getContratante() != null && servico.getContratante().getUsuario() != null

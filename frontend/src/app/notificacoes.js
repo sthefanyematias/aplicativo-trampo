@@ -27,6 +27,7 @@ import { formatarData, formatarHora } from '../utils/formato';
 const APARENCIA = {
     AVALIACAO: { icone: 'star', cor: cores.amareloEscuro, fundo: 'rgba(255, 222, 89, 0.35)' },
     SERVICO: { icone: 'checkmark-circle', cor: cores.sucesso, fundo: cores.sucessoClaro },
+    CANDIDATURA: { icone: 'briefcase', cor: cores.azul, fundo: cores.azulClaro },
     SUPORTE: { icone: 'headset', cor: cores.azul, fundo: cores.azulClaro },
     INFO: { icone: 'notifications', cor: cores.azul, fundo: cores.azulClaro },
 };
@@ -51,8 +52,18 @@ export default function TelaNotificacoes() {
     async function carregar() {
         try {
             const dados = await listarNotificacoes();
-            setNotificacoes(dados ?? []);
+            const lista = dados ?? [];
+            setNotificacoes(lista);
             setErro('');
+
+            if (lista.some((item) => !item.lida)) {
+                try {
+                    await marcarTodasNotificacoesLidas();
+                    setNotificacoes(lista.map((item) => ({ ...item, lida: true })));
+                } catch {
+                    setNotificacoes(lista);
+                }
+            }
         } catch (e) {
             setNotificacoes([]);
             setErro(e.message);

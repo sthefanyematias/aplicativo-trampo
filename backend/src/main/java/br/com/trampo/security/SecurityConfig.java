@@ -1,4 +1,3 @@
-
 package br.com.trampo.security;
 
 import java.io.IOException;

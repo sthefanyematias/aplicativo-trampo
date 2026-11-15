@@ -55,19 +55,21 @@ public class ConversaService {
 
     private void adicionar(List<ConversaResponse> conversas, Servico servico, String outroNome,
             Usuario solicitante) {
-        Mensagem ultima = mensagemRepository.findFirstByServicoIdOrderByDataEnvioDesc(servico.getId());
-
-        if (ultima == null) {
+        if (servico.getContratado() == null) {
             return;
         }
+
+        Mensagem ultima = mensagemRepository.findFirstByServicoIdOrderByDataEnvioDesc(servico.getId());
 
         ConversaResponse conversa = new ConversaResponse();
         conversa.setServicoId(servico.getId());
         conversa.setTitulo(servico.getTitulo());
         conversa.setStatus(servico.getStatus());
         conversa.setOutroNome(outroNome);
-        conversa.setUltimaMensagem(ultima.getConteudo());
-        conversa.setDataUltima(ultima.getDataEnvio());
+        conversa.setUltimaMensagem(ultima != null
+                ? ultima.getConteudo()
+                : "Conversa iniciada. Envie a primeira mensagem.");
+        conversa.setDataUltima(ultima != null ? ultima.getDataEnvio() : null);
         conversa.setTotalMensagens(mensagemRepository.countByServicoId(servico.getId()));
         conversa.setNaoLidas(mensagemRepository
                 .countByServicoIdAndRemetenteIdNotAndLidaFalse(servico.getId(), solicitante.getId()));

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
     ActivityIndicator,
     FlatList,
@@ -9,7 +9,7 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import { Redirect, useRouter } from 'expo-router';
+import { Redirect, useFocusEffect, useRouter } from 'expo-router';
 import Aviso from '../components/Aviso';
 import BarraInferior from '../components/BarraInferior';
 import Botao from '../components/Botao';
@@ -79,14 +79,6 @@ const ACOES_CONTRATADO = [
         cor: cores.amareloEscuro,
     },
     {
-        chave: 'candidaturas',
-        rotulo: 'Candidaturas',
-        icone: 'mail-outline',
-        rota: '/candidaturas',
-        fundo: cores.azulClaro,
-        cor: cores.azul,
-    },
-    {
         chave: 'historico',
         rotulo: 'Histórico',
         icone: 'time-outline',
@@ -133,6 +125,12 @@ export default function Home() {
             setCarregando(false);
         }
     }, [usuario]);
+
+    useFocusEffect(
+        useCallback(() => {
+            if (usuario) carregarNotificacoes();
+        }, [usuario])
+    );
 
     async function carregarTudo() {
         await Promise.all([carregarServicos(), carregarPendentes(), carregarNotificacoes()]);
@@ -282,7 +280,9 @@ export default function Home() {
                                                 ? 'star'
                                                 : ultimaNaoLida.tipo === 'SUPORTE'
                                                   ? 'headset'
-                                                  : 'notifications'
+                                                  : ultimaNaoLida.tipo === 'CANDIDATURA'
+                                                    ? 'briefcase'
+                                                    : 'notifications'
                                         }
                                         tamanho={20}
                                         cor={cores.branco}

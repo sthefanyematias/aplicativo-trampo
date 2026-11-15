@@ -1,5 +1,7 @@
 package br.com.trampo.service;
 
+import java.time.LocalDate;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,13 +29,16 @@ public class CandidaturaService {
     private final CandidaturaRepository candidaturaRepository;
     private final ServicoRepository servicoRepository;
     private final ContratadoRepository contratadoRepository;
+    private final NotificacaoService notificacaoService;
 
     public CandidaturaService(CandidaturaRepository candidaturaRepository,
             ServicoRepository servicoRepository,
-            ContratadoRepository contratadoRepository) {
+            ContratadoRepository contratadoRepository,
+            NotificacaoService notificacaoService) {
         this.candidaturaRepository = candidaturaRepository;
         this.servicoRepository = servicoRepository;
         this.contratadoRepository = contratadoRepository;
+        this.notificacaoService = notificacaoService;
     }
 
     @Transactional
@@ -43,6 +48,10 @@ public class CandidaturaService {
 
         if (servico.getStatus() != StatusServico.ABERTO) {
             throw new RegraNegocioException("Este serviço não está aberto para candidaturas.");
+        }
+
+        if (servico.getDataServico() == null || servico.getDataServico().isBefore(LocalDate.now())) {
+            throw new RegraNegocioException("Esta vaga já expirou e não aceita novas candidaturas.");
         }
 
         Contratado contratado = contratadoRepository.findById(contratadoId)
@@ -77,6 +86,10 @@ public class CandidaturaService {
             throw new RegraNegocioException("Este serviço não está mais aberto.");
         }
 
+        if (servico.getDataServico() == null || servico.getDataServico().isBefore(LocalDate.now())) {
+            throw new RegraNegocioException("Esta vaga já expirou e não pode mais ser aceita.");
+        }
+
         candidatura.setStatus(StatusCandidatura.ACEITA);
         servico.setContratado(candidatura.getContratado());
         servico.setStatus(StatusServico.EM_ANDAMENTO);
@@ -88,6 +101,14 @@ public class CandidaturaService {
                 candidaturaRepository.save(outra);
             }
         }
+
+        notificacaoService.criar(
+                candidatura.getContratado().getUsuario(),
+                "Candidatura aceita",
+                "Sua candidatura para o serviço \"" + servico.getTitulo()
+                        + "\" foi aceita. Acesse a conversa para combinar os detalhes.",
+                "CANDIDATURA",
+                servico.getId());
 
         return candidaturaRepository.save(candidatura);
     }

@@ -1,5 +1,6 @@
 package br.com.trampo.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -15,6 +16,12 @@ public interface ServicoRepository extends JpaRepository<Servico, Long> {
 
     Page<Servico> findByStatus(StatusServico status, Pageable pageable);
 
+    Page<Servico> findByStatusAndDataServicoGreaterThanEqual(StatusServico status, LocalDate data, Pageable pageable);
+
+    List<Servico> findByStatusAndDataServicoGreaterThanEqual(StatusServico status, LocalDate data);
+
+    List<Servico> findByDataServicoBefore(LocalDate data);
+
     Page<Servico> findByContratanteId(Long contratanteId, Pageable pageable);
 
     Page<Servico> findByContratadoId(Long contratadoId, Pageable pageable);
@@ -28,4 +35,6 @@ public interface ServicoRepository extends JpaRepository<Servico, Long> {
     boolean existsByContratadoId(Long contratadoId);
 
     long countByStatus(StatusServico status);
+
+    long countByStatusAndDataServicoGreaterThanEqual(StatusServico status, LocalDate data);
 }

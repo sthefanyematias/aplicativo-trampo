@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import {
     ActivityIndicator,
@@ -156,7 +155,8 @@ export default function TelaConversa() {
 
     if (servico) {
         if (usuario.id === idDoContratante) {
-            nomeDaPessoa = nomeCompleto(servico.contratado?.usuario) || 'Trabalhador';
+            nomeDaPessoa =
+                nomeCompleto(servico.contratado?.usuario) || servico.titulo || 'Conversa';
         } else if (usuario.id === idDoContratado) {
             nomeDaPessoa = nomeCompleto(servico.contratante?.usuario) || 'Contratante';
         }

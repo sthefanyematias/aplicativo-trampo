@@ -1,5 +1,6 @@
 package br.com.trampo.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +76,8 @@ public class ServicoService {
     }
 
     public Page<Servico> listarAbertos(Pageable pageable) {
-        return servicoRepository.findByStatus(StatusServico.ABERTO, pageable);
+        return servicoRepository.findByStatusAndDataServicoGreaterThanEqual(
+                StatusServico.ABERTO, LocalDate.now(), pageable);
     }
 
     public Page<Servico> listarPorContratante(Long contratanteId, Usuario solicitante, Pageable pageable) {
@@ -99,7 +101,8 @@ public class ServicoService {
     }
 
     public Page<Servico> listarProximos(Double latitude, Double longitude, Double raioKm, Pageable pageable) {
-        List<Servico> abertos = servicoRepository.findByStatus(StatusServico.ABERTO, Pageable.unpaged()).getContent();
+        List<Servico> abertos = servicoRepository.findByStatusAndDataServicoGreaterThanEqual(
+                StatusServico.ABERTO, LocalDate.now());
         List<Servico> proximos = new ArrayList<>();
 
         for (Servico servico : abertos) {
@@ -220,6 +223,10 @@ public class ServicoService {
     private void validarAgenda(Servico dados) {
         if (dados.getDataServico() == null) {
             throw new RegraNegocioException("Informe a data do serviço.");
+        }
+
+        if (dados.getDataServico().isBefore(LocalDate.now())) {
+            throw new RegraNegocioException("A data do serviço não pode estar no passado.");
         }
 
         if (dados.getHoraInicio() == null || dados.getHoraFim() == null) {
